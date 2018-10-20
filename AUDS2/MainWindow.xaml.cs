@@ -21,9 +21,26 @@ namespace AUDS2
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Program pr;
         public MainWindow()
         {
             InitializeComponent();
+             pr = new Program();
+
+
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            //samo.Content = pr.test2();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Uloha1 win = new Uloha1(pr);
+            win.ShowDialog();
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AVL
 {
-    class Program
+    public class Program
     {
         void Spusit(string[] args){
             
@@ -22,10 +22,14 @@ namespace AVL
             //a.Insert(new Kniha(4, "dd"));
             //a.Insert(new Kniha(5, "ee"));
             //var kniha = a.Find(new Kniha(3, ""));
-            Test();
-           
 
         }
+
+        public string test2()
+        {
+            return "Ahoj samo";
+        }
+
         public bool Test()
 
         {

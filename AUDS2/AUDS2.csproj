@@ -55,6 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="KatrUzemie\KatUzemie.cs" />
+    <Compile Include="KatrUzemie\KatUzemiePodlaCisla.cs" />
+    <Compile Include="ListVlasnictva\ListVlastnictva.cs" />
+    <Compile Include="Nehnutelnosti\Nehnutelnosti.cs" />
+    <Compile Include="Nehnutelnosti\NehnutelnostiPodlaCisla.cs" />
+    <Compile Include="Obcan\Obcan.cs" />
+    <Compile Include="Uloha1.xaml.cs">
+      <DependentUpon>Uloha1.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -70,6 +79,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Uloha1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

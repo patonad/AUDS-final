@@ -5,6 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AUDS2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid/>
+        Title="Informačný systém" Height="600" Width="1080">
+    <Grid>
+        <Grid Width=" 200" HorizontalAlignment="Left" Background="Black"></Grid>
+        <Grid Height="70" VerticalAlignment="Top" Background="AliceBlue" >
+            
+        </Grid>
+
+    </Grid>
 </Window>
