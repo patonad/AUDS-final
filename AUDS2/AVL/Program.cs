@@ -6,29 +6,67 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using AUDS2.KatUzemie;
+using AUDS2.ListVlasnictva;
+using AUDS2.Nehnutelnost;
+using AUDS2.Obcan;
+
 
 namespace AVL
 {
     public class Program
     {
-        void Spusit(string[] args){
-            
-           
+        public AvlTree<KatUzemiePodlaNazvu> ZoznamKatUzemiPodlaNazvu { get; set; }
+        public AvlTree<KatUzemiePodlaCisla> ZoznamKatUzemiPodlaCisla{ get; set; }
+        public AvlTree<ObcanPodlaRc> ZoznamObcanoPodlaRc { get; set; }
 
-            //AvlTree<Kniha> a = new AvlTree<Kniha>();
-            //a.Insert(new Kniha(1,"aa"));
-            //a.Insert(new Kniha(2, "bb"));
-            //a.Insert(new Kniha(3, "cc"));
-            //a.Insert(new Kniha(4, "dd"));
-            //a.Insert(new Kniha(5, "ee"));
-            //var kniha = a.Find(new Kniha(3, ""));
-
-        }
-
-        public string test2()
+        public Program()
         {
-            return "Ahoj samo";
+            ZoznamKatUzemiPodlaCisla = new AvlTree<KatUzemiePodlaCisla>();
+            ZoznamKatUzemiPodlaNazvu = new AvlTree<KatUzemiePodlaNazvu>();
+            ZoznamObcanoPodlaRc = new AvlTree<ObcanPodlaRc>();
+            var katt = new KatUzemie(1, "aaa");
+            var katn = new KatUzemiePodlaNazvu(katt);
+            var katc = new KatUzemiePodlaCisla(katt);
+            ZoznamKatUzemiPodlaNazvu.Insert(katn);
+            ZoznamKatUzemiPodlaCisla.Insert(katc);
+            var neh = new NehnutelnostiPodlaCisla(new Nehnutelnosti(1, "aa", "dfghj"));
+            katt.ZoznamNehnutelnostiPodlaCisla.Insert(neh);
+            neh = new NehnutelnostiPodlaCisla(new Nehnutelnosti(2, "bb", "dfghj"));
+            katt.ZoznamNehnutelnostiPodlaCisla.Insert(neh);
+            neh = new NehnutelnostiPodlaCisla(new Nehnutelnosti(3, "cc", "dfghj"));
+            katt.ZoznamNehnutelnostiPodlaCisla.Insert(neh);
+            
+            
         }
+
+        public List<NehnutelnostiPodlaCisla> VypisNehnutelPodlaKat(string uzemie)
+        {
+            var kataster = ZoznamKatUzemiPodlaNazvu.Find(new KatUzemiePodlaNazvu(new KatUzemie(-1,uzemie)));
+            return kataster.KatUzemie.ZoznamNehnutelnostiPodlaCisla.InOrder();
+        }
+        public void PridajNehnutelnostNaListVlasnictva(int cislo, string adresa, string popis, int list, int kataster)
+        {
+            var neh = new NehnutelnostiPodlaCisla(new Nehnutelnosti(cislo,adresa,popis));
+            var kat = ZoznamKatUzemiPodlaCisla.Find(new KatUzemiePodlaCisla(new KatUzemie(kataster, "")));
+            var listVl = kat.KatUzemie.ZoznamListovVlasnictvaPodlaCisla.Find(
+                new ListVlasnictvaPodlaCisla(new ListVlasnictva(null, list)));
+            listVl.ListVlasnictva.NehnutelnostiNaListe.Insert(neh);
+            kat.KatUzemie.ZoznamNehnutelnostiPodlaCisla.Insert(neh);
+
+        }
+
+        public void PridajListVlasnictva(string nazov,int cislo)
+        {
+            var kat = ZoznamKatUzemiPodlaNazvu.Find(new KatUzemiePodlaNazvu(new KatUzemie(-1, nazov)));
+            kat.KatUzemie.ZoznamListovVlasnictvaPodlaCisla.Insert(new ListVlasnictvaPodlaCisla(new ListVlasnictva(kat.KatUzemie,cislo)));
+        }
+
+        public void pridajObcana(string meno, string priezvisko, string rc, DateTime? datum)
+        {
+            ZoznamObcanoPodlaRc.Insert(new ObcanPodlaRc(new Obcan(meno,priezvisko,rc,datum)));
+        }
+
 
         public bool Test()
 

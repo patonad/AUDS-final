@@ -9,7 +9,7 @@ using Microsoft.Win32;
 
 namespace AVL
 {
-    class AvlTree<T> where T : IComparable<T>
+    public class AvlTree<T> where T : IComparable<T>
 
     {
         public AvlNode<T> Root { get; set; }

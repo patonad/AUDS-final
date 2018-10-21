@@ -55,12 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="KatrUzemie\KatUzemie.cs" />
-    <Compile Include="KatrUzemie\KatUzemiePodlaCisla.cs" />
-    <Compile Include="ListVlasnictva\ListVlastnictva.cs" />
-    <Compile Include="Nehnutelnosti\Nehnutelnosti.cs" />
-    <Compile Include="Nehnutelnosti\NehnutelnostiPodlaCisla.cs" />
+    <Compile Include="KatUzemie\KatUzemie.cs" />
+    <Compile Include="KatUzemie\KatUzemiePodlaCisla.cs" />
+    <Compile Include="KatUzemie\KatUzemiePodlaNazvu.cs" />
+    <Compile Include="ListVlasnictva\ListVlasnictva.cs" />
+    <Compile Include="ListVlasnictva\ListVlasnictvaPodlaCisla.cs" />
+    <Compile Include="Nehnutelnost\Nehnutelnosti.cs" />
+    <Compile Include="Nehnutelnost\NehnutelnostiPodlaCisla.cs" />
     <Compile Include="Obcan\Obcan.cs" />
+    <Compile Include="Obcan\ObcanPodlaRc.cs" />
     <Compile Include="Uloha1.xaml.cs">
       <DependentUpon>Uloha1.xaml</DependentUpon>
     </Compile>
@@ -110,5 +113,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

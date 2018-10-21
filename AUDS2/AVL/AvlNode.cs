@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AVL
 {
-    class AvlNode<T>
+    public class AvlNode<T>
     {
         public int Vyska { get; set; } = 0;
        
