@@ -59,11 +59,11 @@
     <Compile Include="KatUzemie\KatUzemiePodlaCisla.cs" />
     <Compile Include="KatUzemie\KatUzemiePodlaNazvu.cs" />
     <Compile Include="ListVlasnictva\ListVlasnictva.cs" />
-    <Compile Include="ListVlasnictva\ListVlasnictvaPodlaCisla.cs" />
+    <Compile Include="ListVlasnictva\ListVlasnictvaPodlaC.cs" />
     <Compile Include="Nehnutelnost\Nehnutelnosti.cs" />
-    <Compile Include="Nehnutelnost\NehnutelnostiPodlaCisla.cs" />
+    <Compile Include="Nehnutelnost\NehnutelnostiPodlaC.cs" />
     <Compile Include="Obcan\Obcan.cs" />
-    <Compile Include="Obcan\ObcanPodlaRc.cs" />
+    <Compile Include="Obcan\Vlasnik.cs" />
     <Compile Include="Uloha1.xaml.cs">
       <DependentUpon>Uloha1.xaml</DependentUpon>
     </Compile>

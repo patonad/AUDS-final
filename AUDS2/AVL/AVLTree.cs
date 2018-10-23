@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
@@ -344,6 +345,19 @@ namespace AVL
         public T Find(T data)
         {
             return FindNode(data).Data;
+        }
+
+        public bool Contains(T data)
+        {
+            try
+            {
+                Find(data);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         private AvlNode<T> FindNode(T data)

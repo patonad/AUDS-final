@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AUDS2.KatUzemie;
 using AUDS2.Nehnutelnost;
+using AUDS2.Obcan;
 using AVL;
 
 namespace AUDS2.ListVlasnictva
@@ -15,11 +16,20 @@ namespace AUDS2.ListVlasnictva
         {
             Uzemie = uzemie;
             CisloListu = cisloListu;
-            NehnutelnostiNaListe = new AvlTree<NehnutelnostiPodlaCisla>();
+            NehnutelnostiNaListe = new AvlTree<Nehnutelnosti>();
         }
 
         public KatUzemie.KatUzemie Uzemie { get; set; }
-        public AvlTree<NehnutelnostiPodlaCisla> NehnutelnostiNaListe { get; set; }
+
+        public AvlTree<Nehnutelnosti> NehnutelnostiNaListe { get; set; }
+
         public int CisloListu { get; set; }
+        public AvlTree<Vlasnik> podiely { get; set; }
+
+        public int CompareTo(ListVlasnictva
+            other)
+        {
+            return CisloListu.CompareTo(other.CisloListu);
+        }
     }
 }

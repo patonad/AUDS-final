@@ -42,6 +42,8 @@ namespace AUDS2
             uloha8.Visibility = Visibility.Collapsed;
             Uloha16.Visibility = Visibility.Collapsed;
             Uloha17.Visibility = Visibility.Collapsed;
+            Uloha18.Visibility = Visibility.Collapsed;
+            Uloha21.Visibility = Visibility.Collapsed;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -77,7 +79,7 @@ namespace AUDS2
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
             hlaska7.Content = "";
-            List<NehnutelnostiPodlaCisla> neh;
+            List<NehnutelnostiPodlaC> neh;
             if (TextBox7.Text == "")
             {
                 hlaska7.Content = "Nezadal si žiadny kataster";return;
@@ -94,7 +96,7 @@ namespace AUDS2
             catch (Exception exception)
             {
                 hlaska7.Content = "Nenašiel sa zadaný kataster";
-                neh  = new List<NehnutelnostiPodlaCisla>();
+                neh  = new List<NehnutelnostiPodlaC>();
                 lvUloha7.ItemsSource = neh;
                 return;
             }
@@ -217,7 +219,116 @@ namespace AUDS2
 
         private void Button_Click_12(object sender, RoutedEventArgs e)
         {
-            //toto
+            schovaj();
+            Uloha18.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click_13(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void Button_Click_14(object sender, RoutedEventArgs e)
+        {
+            Hlaska1.Content = "";
+            if (TBSupCIsloUloha1.Text == "")
+            {
+                Hlaska1.Content = "Nezadal si  súpisné čislo ";
+                return;
+            }
+            if (TBCisloKatUloha1.Text == "")
+            {
+                Hlaska1.Content = "Nezadal si číslo katastra";
+                return;
+            }
+
+            int sup, kat;
+            if (!int.TryParse(TBSupCIsloUloha1.Text, out sup))
+            {
+                Hlaska1.Content = "Zle zadané súpisné čislo ";
+                return;
+            }
+            if (!int.TryParse(TBCisloKatUloha1.Text, out kat))
+            {
+                Hlaska1.Content = "Zle zadané katasrálne čislo ";
+                return;
+            }
+            try
+            {
+                //pr.Uloha01(sup,kat);
+            }
+            catch (Exception exception)
+            {
+                Hlaska1.Content = "Kataster neexzistuje alebosúpisne číslo neexzistuje"; ;
+            }
+        }
+
+        private void Button_Click_15(object sender, RoutedEventArgs e)
+        {
+            schovaj();
+            Uloha21.Visibility = Visibility.Visible;
+
+        }
+
+        private void Button_Click_16(object sender, RoutedEventArgs e)
+        {
+            
+            if (TBCisUzUloha21.Text == "")
+            {
+                Hlaska21.Content = "Nezadal si číslo katastra";
+                return;
+            }
+            Hlaska21.Content = "";
+            if (TBNazUzUloha21.Text == "")
+            {
+                Hlaska21.Content = "Nezadal si názov katastra ";
+                return;
+            }
+            int cislo;
+            if (!int.TryParse(TBCisUzUloha21.Text, out cislo))
+            {
+                Hlaska21.Content = "Zle zadané čislo katastra";
+                return;
+            }
+            if(!pr.ContainsToUzemiaPodlaCisla(cislo) && !pr.ContainsToUzemiaPodlaNazvu(TBNazUzUloha21.Text)){
+                pr.pridajUzemie(TBNazUzUloha21.Text,cislo);
+                Hlaska21.Content = "Kataster ból pridaný";
+            }
+            else
+            {
+                Hlaska21.Content = "Kataster už exzistuje";
+            }
+           
+
+        }
+
+        private void Button_Click_17(object sender, RoutedEventArgs e)
+        {
+            if (Uloha18TBAdresa.Text != "" && Uloha18TBCisloKatastra.Text != "" && Uloha18TBCisloListu.Text != "" &&
+                Uloha18TBPopis.Text != "" && Uloha18TBSupCislo.Text != "")
+            {
+                int list, kat, sup;
+                if (!int.TryParse(Uloha18TBCisloListu.Text, out list))
+                {
+                    Hlaska18.Content = "Zle zadané čislo listu";
+                    return;
+                }
+                if (!int.TryParse(Uloha18TBCisloKatastra.Text, out kat))
+                {
+                    Hlaska18.Content = "Zle zadané čislo katastra";
+                    return;
+                }
+                if (!int.TryParse(Uloha18TBSupCislo.Text, out sup))
+                {
+                    Hlaska18.Content = "Zle zadané súpistné čislo";
+                    return;
+                }
+
+
+            }
+            else
+            {
+                Hlaska18.Content = "Nazadal si dáku hodnotu";
+            }
         }
     }
 }

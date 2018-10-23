@@ -16,55 +16,113 @@ namespace AVL
 {
     public class Program
     {
-        public AvlTree<KatUzemiePodlaNazvu> ZoznamKatUzemiPodlaNazvu { get; set; }
-        public AvlTree<KatUzemiePodlaCisla> ZoznamKatUzemiPodlaCisla{ get; set; }
-        public AvlTree<ObcanPodlaRc> ZoznamObcanoPodlaRc { get; set; }
+        public AvlTree<KatUzemiePodlaNazvu> StromkatUzemiPodlaNazvu { get; set; }
+        public AvlTree<KatUzemiePodlaCisla> StromKatUzemiPodlaCisla{ get; set; }
+        public AvlTree<Obcan> StromObcanoPodlaRc { get; set; }
+
+        public void pridajUzemie(string nazov, int cislo)
+        {
+            var kat = new KatUzemie(cislo,nazov);
+            StromKatUzemiPodlaCisla.Insert(new KatUzemiePodlaCisla(kat));
+            StromkatUzemiPodlaNazvu.Insert(new KatUzemiePodlaNazvu(kat));
+        }
+
+        public void getKatUzemia()
+        {
+            var list = StromkatUzemiPodlaNazvu.InOrder();
+        }
+
+        public void pridanieNeh(int cisloKat)
+        {
+           var kat = StromKatUzemiPodlaCisla.Find(new KatUzemiePodlaCisla(new KatUzemie(cisloKat, "")));
+           // kat.KatUzemie.
+        }
+
+        public bool ContainsToUzemiaPodlaNazvu(string nazov)
+        {
+            return StromkatUzemiPodlaNazvu.Contains(new KatUzemiePodlaNazvu(new KatUzemie(-1, nazov)));
+        }
+        public bool ContainsToUzemiaPodlaCisla(int cislo)
+        {
+            return StromKatUzemiPodlaCisla.Contains(new KatUzemiePodlaCisla(new KatUzemie(cislo, "")));
+        }
 
         public Program()
         {
-            ZoznamKatUzemiPodlaCisla = new AvlTree<KatUzemiePodlaCisla>();
-            ZoznamKatUzemiPodlaNazvu = new AvlTree<KatUzemiePodlaNazvu>();
-            ZoznamObcanoPodlaRc = new AvlTree<ObcanPodlaRc>();
+            StromKatUzemiPodlaCisla = new AvlTree<KatUzemiePodlaCisla>();
+            StromkatUzemiPodlaNazvu = new AvlTree<KatUzemiePodlaNazvu>();
+            StromObcanoPodlaRc = new AvlTree<Obcan>();
+
+
             var katt = new KatUzemie(1, "aaa");
             var katn = new KatUzemiePodlaNazvu(katt);
             var katc = new KatUzemiePodlaCisla(katt);
-            ZoznamKatUzemiPodlaNazvu.Insert(katn);
-            ZoznamKatUzemiPodlaCisla.Insert(katc);
-            var neh = new NehnutelnostiPodlaCisla(new Nehnutelnosti(1, "aa", "dfghj"));
-            katt.ZoznamNehnutelnostiPodlaCisla.Insert(neh);
-            neh = new NehnutelnostiPodlaCisla(new Nehnutelnosti(2, "bb", "dfghj"));
-            katt.ZoznamNehnutelnostiPodlaCisla.Insert(neh);
-            neh = new NehnutelnostiPodlaCisla(new Nehnutelnosti(3, "cc", "dfghj"));
-            katt.ZoznamNehnutelnostiPodlaCisla.Insert(neh);
+            StromkatUzemiPodlaNazvu.Insert(katn);
+            StromKatUzemiPodlaCisla.Insert(katc);
+            var neh = new NehnutelnostiPodlaC(new Nehnutelnosti(1, "aa", "dfghj"));
+            katt.StromNehnutelnostiPodlaCisla.Insert(neh);
+            neh = new NehnutelnostiPodlaC(new Nehnutelnosti(2, "bb", "dfghj"));
+            katt.StromNehnutelnostiPodlaCisla.Insert(neh);
+            neh = new NehnutelnostiPodlaC(new Nehnutelnosti(3, "cc", "dfghj"));
+            katt.StromNehnutelnostiPodlaCisla.Insert(neh);
             
             
         }
 
-        public List<NehnutelnostiPodlaCisla> VypisNehnutelPodlaKat(string uzemie)
+        //public string[][] Uloha01(int supCislo, int cisloKatastru)
+        //{
+        //   var nehnutelnost= StromKatUzemiPodlaCisla.Find(new KatUzemiePodlaCisla(new KatUzemie(cisloKatastru,"")))
+        //        .GetNehnutelnostPodlaCisla(supCislo);
+        //   var list = nehnutelnost.ListVlasnictva;
+        //    string[][] pole = new string[3][];
+        //    pole[0] =new[] { nehnutelnost.Cislo.ToString(),nehnutelnost.Adresa,nehnutelnost.Popis,list.CisloListu.ToString()}
+            
+        //    ;
+
+
+        //}
+        public void Uloha02(string rc)
         {
-            var kataster = ZoznamKatUzemiPodlaNazvu.Find(new KatUzemiePodlaNazvu(new KatUzemie(-1,uzemie)));
-            return kataster.KatUzemie.ZoznamNehnutelnostiPodlaCisla.InOrder();
+            var obyvatel = StromObcanoPodlaRc.Find(new Obcan("", "", rc, null));
+            var trvalyPobyt = obyvatel.TrvalyPobyt;
+
+        }
+
+        public void Uloha3(int cisloKat, int cisloListu, int supCislo)
+        {
+            var a = StromKatUzemiPodlaCisla.Find(new KatUzemiePodlaCisla(new KatUzemie(cisloKat, "")))
+                .GetNehnutelnostPodlaCisla(supCislo);
+            var list = a.TrvalýPobyt;
+        }
+
+
+
+
+        public List<NehnutelnostiPodlaC> VypisNehnutelPodlaKat(string uzemie)
+        {
+            var kataster = StromkatUzemiPodlaNazvu.Find(new KatUzemiePodlaNazvu(new KatUzemie(-1,uzemie)));
+            return kataster.KatUzemie.StromNehnutelnostiPodlaCisla.InOrder();
         }
         public void PridajNehnutelnostNaListVlasnictva(int cislo, string adresa, string popis, int list, int kataster)
         {
-            var neh = new NehnutelnostiPodlaCisla(new Nehnutelnosti(cislo,adresa,popis));
-            var kat = ZoznamKatUzemiPodlaCisla.Find(new KatUzemiePodlaCisla(new KatUzemie(kataster, "")));
-            var listVl = kat.KatUzemie.ZoznamListovVlasnictvaPodlaCisla.Find(
-                new ListVlasnictvaPodlaCisla(new ListVlasnictva(null, list)));
-            listVl.ListVlasnictva.NehnutelnostiNaListe.Insert(neh);
-            kat.KatUzemie.ZoznamNehnutelnostiPodlaCisla.Insert(neh);
+            var neh = new NehnutelnostiPodlaC(new Nehnutelnosti(cislo,adresa,popis));
+            var kat = StromKatUzemiPodlaCisla.Find(new KatUzemiePodlaCisla(new KatUzemie(kataster, "")));
+            var listVl = kat.KatUzemie.StromListovVlasnictvaPodlaCisla.Find(
+                new ListVlasnictvaPodlaC(new ListVlasnictva(null, list)));
+          //  listVl.ListVlasnictva.NehnutelnostiNaListe.Insert(neh);
+            kat.KatUzemie.StromNehnutelnostiPodlaCisla.Insert(neh);
 
         }
 
         public void PridajListVlasnictva(string nazov,int cislo)
         {
-            var kat = ZoznamKatUzemiPodlaNazvu.Find(new KatUzemiePodlaNazvu(new KatUzemie(-1, nazov)));
-            kat.KatUzemie.ZoznamListovVlasnictvaPodlaCisla.Insert(new ListVlasnictvaPodlaCisla(new ListVlasnictva(kat.KatUzemie,cislo)));
+            var kat = StromkatUzemiPodlaNazvu.Find(new KatUzemiePodlaNazvu(new KatUzemie(-1, nazov)));
+            kat.KatUzemie.StromListovVlasnictvaPodlaCisla.Insert(new ListVlasnictvaPodlaC(new ListVlasnictva(kat.KatUzemie,cislo)));
         }
 
         public void pridajObcana(string meno, string priezvisko, string rc, DateTime? datum)
         {
-            ZoznamObcanoPodlaRc.Insert(new ObcanPodlaRc(new Obcan(meno,priezvisko,rc,datum)));
+            StromObcanoPodlaRc.Insert(new Obcan(meno,priezvisko,rc,datum));
         }
 
 

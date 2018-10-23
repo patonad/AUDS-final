@@ -9,7 +9,7 @@ using AVL;
 
 namespace AUDS2.Obcan
 {
-    public class Obcan
+    public class Obcan : IComparable<Obcan>
     {
         public Obcan(string meno, string priezvisko, string rodCislo, DateTime? datNarodenia)
         {
@@ -17,6 +17,7 @@ namespace AUDS2.Obcan
             Priezvisko = priezvisko;
             RodCislo = rodCislo;
             DatNarodenia = datNarodenia;
+            nehnutelnosti = new AvlTree<Nehnutelnosti>();
         }
 
         public string Meno { get; set; }
@@ -24,6 +25,10 @@ namespace AUDS2.Obcan
         public string RodCislo { get; set; }
         public DateTime? DatNarodenia { get; set; }
         public Nehnutelnosti TrvalyPobyt { get; set; }
-        
+        public AvlTree<Nehnutelnosti> nehnutelnosti { get; set; }
+        public int CompareTo(Obcan other)
+        {
+            return RodCislo.CompareTo(other.RodCislo);
+        }
     }
 }

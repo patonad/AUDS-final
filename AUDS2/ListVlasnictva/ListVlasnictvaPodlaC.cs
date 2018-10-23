@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace AUDS2.ListVlasnictva
 {
-    public class ListVlasnictvaPodlaCisla : IComparable<ListVlasnictvaPodlaCisla>
+    public class ListVlasnictvaPodlaC : IComparable<ListVlasnictvaPodlaC>
     {
-        public ListVlasnictvaPodlaCisla(ListVlasnictva listVlasnictva)
+        public ListVlasnictvaPodlaC(ListVlasnictva listVlasnictva)
         {
             ListVlasnictva = listVlasnictva;
         }
 
         public ListVlasnictva ListVlasnictva { get; set; }
-        public int CompareTo(ListVlasnictvaPodlaCisla other)
+        public int CompareTo(ListVlasnictvaPodlaC other)
         {
             return ListVlasnictva.CisloListu.CompareTo(other.ListVlasnictva.CisloListu);
         }
