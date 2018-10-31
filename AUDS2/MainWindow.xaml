@@ -26,21 +26,21 @@
             <Grid Name="plochaVyhladajB">
                 <Grid Name="MenuVyhladaj" Visibility="Collapsed">
                     <Button FontSize="20" BorderBrush="White" Background="White" Content="Nehnuteľnosti podľa súpisného čísla a čísla katastrálneho územia" HorizontalAlignment="Left" Margin="52,22,0,0" VerticalAlignment="Top" Width="867" Click="Button_Click_13"/>
-                    <Button FontSize="20" BorderBrush="White" Background="White" Content="Obyvateľa podľa rodného čísla" HorizontalAlignment="Left" Margin="50,58,0,0" VerticalAlignment="Top" Width="867"/>
-                    <Button FontSize="20" BorderBrush="White" Background="White" Content="Osoby ktoré majú trvalý pobyt v zadanej nehnuteľnosti" HorizontalAlignment="Left" Margin="52,96,0,0" VerticalAlignment="Top" Width="867"/>
-                    <Button FontSize="20" BorderBrush="White" Background="White" Content="List vlastníctva podľa jeho čísla a čísla katastrálneho územia" HorizontalAlignment="Left" Margin="60,136,0,0" VerticalAlignment="Top" Width="867"/>
-                    <Button FontSize="20" BorderBrush="White" Background="White" Content="Nehnuteľnosť podľa súpisného čísla a názvu katastrálneho územia" HorizontalAlignment="Left" Margin="59,180,0,0" VerticalAlignment="Top" Width="867"/>
-                    <Button FontSize="20" BorderBrush="White" Background="White" Content="List vlastníctva podľa jeho čísla a názvu katastrálneho územia" HorizontalAlignment="Left" Margin="65,224,0,0" VerticalAlignment="Top" Width="867"/>
+                    <Button FontSize="20" BorderBrush="White" Background="White" Content="Obyvateľa podľa rodného čísla" HorizontalAlignment="Left" Margin="50,58,0,0" VerticalAlignment="Top" Width="867" Click="Button_Click_26"/>
+                    <Button FontSize="20" BorderBrush="White" Background="White" Content="Osoby ktoré majú trvalý pobyt v zadanej nehnuteľnosti" HorizontalAlignment="Left" Margin="52,96,0,0" VerticalAlignment="Top" Width="867" Click="Button_Click_28"/>
+                    <Button FontSize="20" BorderBrush="White" Background="White" Content="List vlastníctva podľa jeho čísla a čísla katastrálneho územia s podielmi" HorizontalAlignment="Left" Margin="60,136,0,0" VerticalAlignment="Top" Width="867" Click="Button_Click_30"/>
+                    <Button FontSize="20" BorderBrush="White" Background="White" Content="Nehnuteľnosť podľa súpisného čísla a názvu katastrálneho územia" HorizontalAlignment="Left" Margin="59,180,0,0" VerticalAlignment="Top" Width="867" Click="Button_Click_32"/>
+                    <Button FontSize="20" BorderBrush="White" Background="White" Content="List vlastníctva podľa jeho čísla a názvu katastrálneho územia s podielmi" HorizontalAlignment="Left" Margin="65,224,0,0" VerticalAlignment="Top" Width="867" Click="Button_Click_35"/>
                     <Button FontSize="20" BorderBrush="White" Background="White" Content="Nehnuteľností v zadanom katastrálnom území" HorizontalAlignment="Left" Margin="52,271,0,0" VerticalAlignment="Top" Width="867" Click="Button_Click_4"/>
                     <Button FontSize="20" BorderBrush="White" Background="White" Content="Všetkých nehnuteľností majiteľa  v zadanom katastrálnom území aj s jeho podielmi" HorizontalAlignment="Left" Margin="59,316,0,0" VerticalAlignment="Top" Width="867" Click="Button_Click_6"/>
-                    <Button FontSize="20" BorderBrush="White" Background="White" Content="Všetkých nehnuteľností majiteľa aj s jeho podielmi" HorizontalAlignment="Left" Margin="57,364,0,0" VerticalAlignment="Top" Width="867"/>
+                    <Button FontSize="20" BorderBrush="White" Background="White" Content="Všetkých nehnuteľností majiteľa aj s jeho podielmi" HorizontalAlignment="Left" Margin="57,364,0,0" VerticalAlignment="Top" Width="867" Click="Button_Click_36"/>
                     <Button FontSize="20" BorderBrush="White" Background="White" Content="Všetkých katastrálnych území utriedených podľa ich názvov" HorizontalAlignment="Left" Margin="54,410,0,0" VerticalAlignment="Top" Width="867"/>
                 </Grid>
             </Grid>
             <Grid Name="plochaPridajB">
                 <Grid Name="MenuPridaj" Visibility="Collapsed">
                     <Button FontSize="20" BorderBrush="White" Background="White" Content="Nového trvalého pobytu obyvateľa do nehnuteľnosti v zadanom katastrálnom území" HorizontalAlignment="Left" Margin="52,22,0,0" VerticalAlignment="Top" Width="867"/>
-                    <Button FontSize="20" BorderBrush="White" Background="White" Content="Majetkový podiel majiteľa na list vlastníctva v zadanom katastrálnom území" HorizontalAlignment="Left" Margin="48,65,0,0" VerticalAlignment="Top" Width="867"/>
+                    <Button FontSize="20" BorderBrush="White" Background="White" Content="Majetkový podiel majiteľa na list vlastníctva v zadanom katastrálnom území" HorizontalAlignment="Left" Margin="56,63,0,0" VerticalAlignment="Top" Width="867" Click="Button_Click_22"/>
                     <Button FontSize="20" BorderBrush="White" Background="White" Content="Pridanie občana" HorizontalAlignment="Left" Margin="44,100,0,0" VerticalAlignment="Top" Width="867" Click="Button_Click_8"/>
                     <Button FontSize="20" BorderBrush="White" Background="White" Content="List vlastníctva" HorizontalAlignment="Left" Margin="44,136,0,0" VerticalAlignment="Top" Width="867" RenderTransformOrigin="0.464,0.365" Click="Button_Click_10"/>
                     <Button FontSize="20" BorderBrush="White" Background="White" Content="Nehnuteľnost na list vlastníctva v zadanom katastrálnom území" HorizontalAlignment="Left" Margin="49,172,0,0" VerticalAlignment="Top" Width="867" Click="Button_Click_12"/>
@@ -50,7 +50,7 @@
             <Grid Name="plochaZmenB">
                 <Grid Name="MenuZmen" Visibility="Collapsed">
                     <Button FontSize="20" BorderBrush="White" Background="White" Content="Majiteľa nehnuteľnosti v zadanom katastrálnom území" HorizontalAlignment="Left" Margin="52,22,0,0" VerticalAlignment="Top" Width="867"/>
-                    <Button FontSize="20" BorderBrush="White" Background="White" Content="Majetkový podiel majiteľa na list vlastníctva v zadanom katastrálnom území" HorizontalAlignment="Left" Margin="56,78,0,0" VerticalAlignment="Top" Width="867"/>
+                    <Button FontSize="20" BorderBrush="White" Background="White" Content="Majetkový podiel majiteľa na list vlastníctva v zadanom katastrálnom území" HorizontalAlignment="Left" Margin="56,78,0,0" VerticalAlignment="Top" Width="867" Click="Button_Click_18"/>
                 </Grid>
             </Grid>
             <Grid Name="plochaOdstranB">
@@ -68,6 +68,83 @@
                 <TextBox Name="TBSupCIsloUloha1" FontSize="15"  HorizontalAlignment="Left" Height="23" Margin="388,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <Button Content="Hľadaj" HorizontalAlignment="Left" Margin="553,83,0,0" VerticalAlignment="Top" Width="95" RenderTransformOrigin="0.167,0.318" Height="37" Click="Button_Click_14"/>
                 <Label FontSize="20" Name="Hlaska1" HorizontalContentAlignment="Center" Foreground="Red" Content="" HorizontalAlignment="Left" Margin="327,155,0,0" VerticalAlignment="Top" Width="284"/>
+                <Label FontSize="15" Content="Supistne cislo:" HorizontalAlignment="Left" Margin="189,207,0,0" VerticalAlignment="Top" Width="108"/>
+                <Label FontSize="15" Name="Uloha1LSC" Content="" HorizontalAlignment="Left" Margin="321,210,0,0" VerticalAlignment="Top" Width="92"/>
+                <Label FontSize="15" Content="Adresa:" HorizontalAlignment="Left" Margin="468,214,0,0" VerticalAlignment="Top" Width="108"/>
+                <Label FontSize="15" Content="Popis:" HorizontalAlignment="Left" Margin="191,249,0,0" VerticalAlignment="Top" Width="108"/>
+                <Label FontSize="15" x:Name="Uloha1LA" Content=" " HorizontalAlignment="Left" Margin="555,215,0,0" VerticalAlignment="Top" Width="160"/>
+                <TextBlock Name="Uloha1TB" FontSize="15" HorizontalAlignment="Left" Margin="250,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="479"/>
+                <Label FontSize="15" Content="Cislo listu vlasnictva:" HorizontalAlignment="Left" Margin="194,290,0,0" VerticalAlignment="Top" Width="157"/>
+                <Label Name="Uloha1LLV" FontSize="15" Content="" HorizontalAlignment="Left" Margin="351,291,0,0" VerticalAlignment="Top" Width="99"/>
+
+            </Grid>
+            <Grid  Visibility="Collapsed" Name="uloha2" Background="White" HorizontalAlignment="Left" Height="500" Margin="7,-3,-1.6,0" VerticalAlignment="Top" Width="953">
+                <Label FontSize="15" Content="Rodne cislo:" HorizontalAlignment="Left" Margin="212,66,0,0" VerticalAlignment="Top" Width="142"/>
+                <TextBox  Name="Uloha2TBRC" FontSize="15"  HorizontalAlignment="Left" Height="23" Margin="365,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <Button Content="Hľadaj" HorizontalAlignment="Left" Margin="553,61,0,0" VerticalAlignment="Top" Width="95" RenderTransformOrigin="0.167,0.318" Height="37" Click="Button_Click_27"/>
+                <Label FontSize="20" Name="Hlaska2" HorizontalContentAlignment="Center" Foreground="Red" Content="" HorizontalAlignment="Left" Margin="327,155,0,0" VerticalAlignment="Top" Width="284"/>
+                <Label FontSize="15" Content="Supistne cislo:" HorizontalAlignment="Left" Margin="189,207,0,0" VerticalAlignment="Top" Width="108"/>
+                <Label Name="Uloha2LSC" FontSize="15" Content="" HorizontalAlignment="Left" Margin="321,210,0,0" VerticalAlignment="Top" Width="92"/>
+                <Label FontSize="15" Content="Adresa:" HorizontalAlignment="Left" Margin="468,214,0,0" VerticalAlignment="Top" Width="108"/>
+                <Label FontSize="15" Content="Popis:" HorizontalAlignment="Left" Margin="191,249,0,0" VerticalAlignment="Top" Width="108"/>
+                <Label Name="Uloha2LA" FontSize="15"  Content=" " HorizontalAlignment="Left" Margin="555,215,0,0" VerticalAlignment="Top" Width="160"/>
+                <TextBlock Name="Uloha2TBP" FontSize="15" HorizontalAlignment="Left" Margin="250,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="479"/>
+                <Label FontSize="15" Content="" HorizontalAlignment="Left" Margin="351,291,0,0" VerticalAlignment="Top" Width="99"/>
+
+            </Grid>
+            <Grid  Visibility="Collapsed" Name="uloha3" Background="White" HorizontalAlignment="Left" Height="500" Margin="7,-3,-1.6,0" VerticalAlignment="Top" Width="953">
+                <Label FontSize="15" Content="Katastrane uzemie" HorizontalAlignment="Left" Margin="195,66,0,0" VerticalAlignment="Top" Width="148"/>
+                <Label FontSize="15" Content="Cislo listu vlasnictva" HorizontalAlignment="Left" Margin="193,100,0,0" VerticalAlignment="Top" Width="150"/>
+                <Label FontSize="15" Content="Supistne cislo" HorizontalAlignment="Left" Margin="193,132,0,0" VerticalAlignment="Top" Width="149"/>
+                <TextBox Name="Uloha3TBK" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="410,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBox Name="Uloha3TSC" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="410,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBox  Name="Uloha3TLV" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="411,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Label FontSize="20" Name="Hlaska3" HorizontalContentAlignment="Center" Foreground="Red" Content="" HorizontalAlignment="Left" Margin="327,175,0,0" VerticalAlignment="Top" Width="284"/>
+                <Button Content="Hladaj" HorizontalAlignment="Left" Margin="591,106,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_29"/>
+                <ListView Name="Uloha3LW" HorizontalAlignment="Left" Height="161" Margin="182,257,0,0" VerticalAlignment="Top" Width="551">
+                   
+                </ListView>
+
+            </Grid>
+            <Grid  Visibility="Collapsed" Name="uloha4" Background="White" HorizontalAlignment="Left" Height="500" Margin="7,-3,-1.6,0" VerticalAlignment="Top" Width="953">
+                <Label FontSize="15" Content="Katastrane uzemie" HorizontalAlignment="Left" Margin="195,66,0,0" VerticalAlignment="Top" Width="148"/>
+                <Label FontSize="15" Content="Cislo listu vlasnictva" HorizontalAlignment="Left" Margin="193,100,0,0" VerticalAlignment="Top" Width="150"/>
+                <TextBox Name="Uloha4TBK" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="410,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBox  Name="Uloha4TLV" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="411,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Label FontSize="20" Name="Hlaska4" HorizontalContentAlignment="Center" Foreground="Red" Content="" HorizontalAlignment="Left" Margin="327,175,0,0" VerticalAlignment="Top" Width="284"/>
+                <Button Content="Hladaj" HorizontalAlignment="Left" Margin="591,106,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_31" />
+                <ListView Name="Uloha4LW" HorizontalAlignment="Left" Height="161" Margin="182,257,0,0" VerticalAlignment="Top" Width="551">
+
+                </ListView>
+
+            </Grid>
+            <Grid  Visibility="Collapsed" Name="uloha5" Background="White" HorizontalAlignment="Left" Height="500" Margin="7,-3,-1.6,0" VerticalAlignment="Top" Width="953">
+                <Label FontSize="15" Content="Zadaj supisné číslo:" HorizontalAlignment="Left" Margin="212,66,0,0" VerticalAlignment="Top" Width="142"/>
+                <Label FontSize="15" Content="Zadaj nazov katastra:" HorizontalAlignment="Left" Margin="212,107,0,0" VerticalAlignment="Top" Width="148"/>
+                <TextBox Name="TBCisloKatUloha5" FontSize="15"  HorizontalAlignment="Left" Height="23" Margin="389,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBox Name="TBSupCIsloUloha5" FontSize="15"  HorizontalAlignment="Left" Height="23" Margin="388,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <Button Content="Hľadaj" HorizontalAlignment="Left" Margin="553,83,0,0" VerticalAlignment="Top" Width="95" RenderTransformOrigin="0.5,0.5" Height="37" Click="Button_Click_33"/>
+                <Label FontSize="20" Name="Hlaska5" HorizontalContentAlignment="Center" Foreground="Red" Content="" HorizontalAlignment="Left" Margin="327,155,0,0" VerticalAlignment="Top" Width="284"/>
+                <Label FontSize="15" Content="Supistne cislo:" HorizontalAlignment="Left" Margin="189,207,0,0" VerticalAlignment="Top" Width="108"/>
+                <Label FontSize="15" Name="Uloha5LSC" Content="" HorizontalAlignment="Left" Margin="321,210,0,0" VerticalAlignment="Top" Width="92"/>
+                <Label FontSize="15" Content="Adresa:" HorizontalAlignment="Left" Margin="468,214,0,0" VerticalAlignment="Top" Width="108"/>
+                <Label FontSize="15" Content="Popis:" HorizontalAlignment="Left" Margin="191,249,0,0" VerticalAlignment="Top" Width="108"/>
+                <Label FontSize="15" x:Name="Uloha5LA" Content=" " HorizontalAlignment="Left" Margin="555,215,0,0" VerticalAlignment="Top" Width="160"/>
+                <TextBlock Name="Uloha5TB" FontSize="15" HorizontalAlignment="Left" Margin="250,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="479"/>
+                <Label FontSize="15" Content="Cislo listu vlasnictva:" HorizontalAlignment="Left" Margin="194,290,0,0" VerticalAlignment="Top" Width="157"/>
+                <Label Name="Uloha5LLV" FontSize="15" Content="" HorizontalAlignment="Left" Margin="351,291,0,0" VerticalAlignment="Top" Width="99"/>
+
+            </Grid>
+            <Grid  Visibility="Collapsed" Name="uloha6" Background="White" HorizontalAlignment="Left" Height="500" Margin="7,-3,-1.6,0" VerticalAlignment="Top" Width="953">
+                <Label FontSize="15" Content="Katastrane uzemie" HorizontalAlignment="Left" Margin="195,66,0,0" VerticalAlignment="Top" Width="148"/>
+                <Label FontSize="15" Content="Cislo listu vlasnictva" HorizontalAlignment="Left" Margin="193,100,0,0" VerticalAlignment="Top" Width="150"/>
+                <TextBox Name="Uloha6TBK" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="410,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <TextBox  Name="Uloha6TLV" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="411,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Label FontSize="20" Name="Hlaska6" HorizontalContentAlignment="Center" Foreground="Red" Content="" HorizontalAlignment="Left" Margin="327,175,0,0" VerticalAlignment="Top" Width="284"/>
+                <Button Content="Hladaj" HorizontalAlignment="Left" Margin="591,106,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_34" />
+                <ListView Name="Uloha6LW" HorizontalAlignment="Left" Height="161" Margin="182,257,0,0" VerticalAlignment="Top" Width="551">
+
+                </ListView>
 
             </Grid>
 
@@ -76,22 +153,72 @@
                 <TextBox Name="TextBox7" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="382,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="262" RenderTransformOrigin="0.281,0.317"/>
                 <Button Content="Hľadaj" HorizontalAlignment="Left" Margin="717,45,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_5"/>
                 <Label Foreground="Red" FontSize="15" HorizontalContentAlignment="Center" Name="hlaska7" Content="" HorizontalAlignment="Left" Margin="306,99,0,0" VerticalAlignment="Top" Width="314"/>
-                <ListView Name="lvUloha7" HorizontalAlignment="Left" Height="279" Margin="57,187,0,0" VerticalAlignment="Top" Width="832">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+                <ListView Name="Uloha7LW" HorizontalAlignment="Left" Height="279" Margin="57,187,0,0" VerticalAlignment="Top" Width="832">
                 </ListView>
             </Grid>
             <Grid  Visibility="Collapsed" Name="uloha8" Background="White" HorizontalAlignment="Left" Height="500" Margin="7,-3,-1.6,0" VerticalAlignment="Top" Width="953">
                 <Label FontSize="15" Content="Zadaj rodné číslo majitela:" HorizontalAlignment="Left" Margin="137,69,0,0" VerticalAlignment="Top" Width="494"/>
-                <TextBox Name="TBRCUloha8" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="436,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
+                <TextBox Name="Uloha8TBRC" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="436,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
                 <Label FontSize="15"  Content="Zadaj číslo katastrálneho územia:" HorizontalAlignment="Left" Margin="136,100,0,0" VerticalAlignment="Top" Width="229"/>
-                <TextBox FontSize="15" Name="TBCUloha8" HorizontalAlignment="Left" Height="23" Margin="435,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="213"/>
+                <TextBox FontSize="15" Name="Uloha8TBkat" HorizontalAlignment="Left" Height="23" Margin="435,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="213"/>
                 <Button Content="Hľadaj" FontSize="20" HorizontalAlignment="Left" Margin="694,78,0,0" VerticalAlignment="Top" Width="103" RenderTransformOrigin="-0.115,-0.323" Height="46" Click="Button_Click_7"/>
                 <Label FontSize="20" Name="Hlaska8" HorizontalContentAlignment="Center" Foreground="Red" Content="" HorizontalAlignment="Left" Margin="327,155,0,0" VerticalAlignment="Top" Width="284"/>
+                <ListView  Name="Uloha8LW" HorizontalAlignment="Left" Height="171" Margin="170,245,0,0" VerticalAlignment="Top" Width="552">
+
+                </ListView>
             </Grid>
+            <Grid  Visibility="Collapsed" Name="uloha9" Background="White" HorizontalAlignment="Left" Height="500" Margin="7,-3,-1.6,0" VerticalAlignment="Top" Width="953">
+                <Label FontSize="15" Content="Zadaj rodné číslo majitela:" HorizontalAlignment="Left" Margin="137,69,0,0" VerticalAlignment="Top" Width="494"/>
+                <TextBox Name="Uloha9TBRC" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="436,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
+                <Button Content="Hľadaj" FontSize="20" HorizontalAlignment="Left" Margin="694,78,0,0" VerticalAlignment="Top" Width="103" RenderTransformOrigin="-0.115,-0.323" Height="46" Click="Button_Click_37"/>
+                <Label FontSize="20" Name="Hlaska9" HorizontalContentAlignment="Center" Foreground="Red" Content="" HorizontalAlignment="Left" Margin="327,155,0,0" VerticalAlignment="Top" Width="284"/>
+                <ListView  Name="Uloha9LW" HorizontalAlignment="Left" Height="171" Margin="170,245,0,0" VerticalAlignment="Top" Width="552">
+
+                </ListView>
+            </Grid>
+            <Grid Visibility="Collapsed" Name="Uloha12" Background="White" HorizontalAlignment="Left" Height="500" Margin="7,-3,-1.6,0" VerticalAlignment="Top" Width="953">
+                <Label FontSize="15" Content="Číslo katastra:" HorizontalAlignment="Left" Margin="167,79,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.176,-0.852" Width="131"/>
+                <Label FontSize="15" Content="Číslo listu vlastnictva:" HorizontalAlignment="Left" Margin="168,44,0,0" VerticalAlignment="Top" Width="153" RenderTransformOrigin="0.981,0.24"/>
+                <TextBox Name="Uloha12TBCL" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="362,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBox Name="Uloha12TBCK" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="360,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <Button FontSize="15" Content="Hľadaj" HorizontalAlignment="Left" Margin="537,67,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_19"/>
+                <Label FontSize="20" x:Name="Hlaska12" HorizontalContentAlignment="Center" Foreground="Red" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="284"/>
+                <TextBox BorderBrush="White" FontSize="15" Name="Uloha12TBP" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="120" Margin="559,285,0,0"/>
+                <Label Name="Uloha12L" FontSize="15" Content=" " HorizontalAlignment="Left" Margin="410,284,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.527,-0.023" Width="123"/>
+                <Button Content="Zmen" HorizontalAlignment="Left" Margin="549,221,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_20" RenderTransformOrigin="-1.477,-2.275"/>
+                <ListView  Name="Uloha12LW" HorizontalAlignment="Left" Height="171" Margin="21,292,0,0" VerticalAlignment="Top" Width="373">
+
+
+                </ListView>
+                <Label Content="Rodne cislo" HorizontalAlignment="Left" Margin="146,216,0,0" VerticalAlignment="Top" Width="78"/>
+                <Label Content="Podiel" HorizontalAlignment="Left" Margin="344,217,0,0" VerticalAlignment="Top" Width="51"/>
+                <TextBox Name="Uloha12TBRC" HorizontalAlignment="Left" Margin="231,222,0,0" TextWrapping="Wrap" Text="" Width="100" VerticalAlignment="Top"/>
+                <TextBox Name="Uloha12TBPR" HorizontalAlignment="Left" Margin="413,222,0,0" TextWrapping="Wrap" Text="" Width="100" VerticalAlignment="Top"/>
+                <ListView  x:Name="Uloha12LWN" HorizontalAlignment="Left" Height="171" Margin="428,288,0,0" VerticalAlignment="Top" Width="373"/>
+                <Button Content="Pridaj" HorizontalAlignment="Left" Margin="828,362,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_21"/>
+
+            </Grid>
+            <Grid Visibility="Collapsed" Name="Uloha12p" Background="White" HorizontalAlignment="Left" Height="500" Margin="7,-3,-1.6,0" VerticalAlignment="Top" Width="953">
+                <Label FontSize="15" Content="Číslo katastra:" HorizontalAlignment="Left" Margin="167,79,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.176,-0.852" Width="131"/>
+                <Label FontSize="15" Content="Číslo listu vlastnictva:" HorizontalAlignment="Left" Margin="168,44,0,0" VerticalAlignment="Top" Width="153" RenderTransformOrigin="0.981,0.24"/>
+                <TextBox Name="Uloha12pTBCL" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="362,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBox Name="Uloha12pTBCK" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="360,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <Button FontSize="15" Content="Hľadaj" HorizontalAlignment="Left" Margin="537,67,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_24"/>
+                <Label FontSize="20" x:Name="Hlaska12p" HorizontalContentAlignment="Center" Foreground="Red" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="284"/>
+                <TextBox BorderBrush="White" FontSize="15" Name="Uloha12pTBP" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="120" Margin="559,285,0,0"/>
+                <ListView  Name="Uloha12pLW" HorizontalAlignment="Left" Height="171" Margin="171,262,0,0" VerticalAlignment="Top" Width="373">
+
+
+                </ListView>
+                <Label Content="Rodne cislo" HorizontalAlignment="Left" Margin="146,216,0,0" VerticalAlignment="Top" Width="78"/>
+                <Label Content="Podiel" HorizontalAlignment="Left" Margin="344,217,0,0" VerticalAlignment="Top" Width="51"/>
+                <TextBox Name="Uloha12pTBRC" HorizontalAlignment="Left" Margin="231,222,0,0" TextWrapping="Wrap" Text="" Width="100" VerticalAlignment="Top"/>
+                <TextBox Name="Uloha12pTBPR" HorizontalAlignment="Left" Margin="413,222,0,0" TextWrapping="Wrap" Text="" Width="100" VerticalAlignment="Top"/>
+                <Button Content="Button" HorizontalAlignment="Left" Margin="571,220,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_25"/>
+
+
+            </Grid>
+
             <Grid  Visibility ="Collapsed" Name="Uloha16" Margin="0,0,0.2,0" >
                 <Label FontSize="15" Content="Meno:" HorizontalAlignment="Left" Margin="282,57,0,0" VerticalAlignment="Top" Width="100"/>
                 <Label  FontSize="15" Content="Priezvisko:" HorizontalAlignment="Left" Margin="282,92,0,0" VerticalAlignment="Top" Width="105"/>
@@ -100,9 +227,12 @@
                 <TextBox Name="TBMenoUloha16" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="431,63,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="187" RenderTransformOrigin="0.5,0.5"/>
                 <TextBox Name="TBPriezUloha16" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="430,96,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="184" RenderTransformOrigin="0.5,0.5"/>
                 <TextBox Name="TBRCUloha16" FontSize="15" HorizontalAlignment="Left" Height="25" Margin="430,129,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="184" RenderTransformOrigin="0.5,0.5"/>
-                <Label FontSize="20" Name="Hlaska16" HorizontalContentAlignment="Center" Foreground="Red" Content="" HorizontalAlignment="Left" Margin="338,350,0,0" VerticalAlignment="Top" Width="284"/>
+                <Label FontSize="20" Name="Hlaska16" HorizontalContentAlignment="Center" Foreground="Red" Content="" HorizontalAlignment="Left" Margin="498,0,0,0" VerticalAlignment="Top" Width="284"/>
                 <DatePicker Name="DatumUloha16" HorizontalAlignment="Left" Margin="433,164,0,0" VerticalAlignment="Top"/>
-                <Button Content="Pridaj" HorizontalAlignment="Left" Margin="425,254,0,0" VerticalAlignment="Top" Width="146" Height="42" Click="Button_Click_9" RenderTransformOrigin="0.49,-0.745"/>
+                <Button Content="Pridaj" HorizontalAlignment="Left" Margin="660,92,0,0" VerticalAlignment="Top" Width="146" Height="42" Click="Button_Click_9" RenderTransformOrigin="0.49,-0.745"/>
+                <ListView Name="Uloha16LW" HorizontalAlignment="Left" Height="100" Margin="147,325,0,0" VerticalAlignment="Top" Width="654">
+
+                </ListView>
             </Grid>
             <Grid Visibility="Collapsed" Name="Uloha17">
                 <Label  FontSize="15" Content="Zadaj katastrálne územmie:" HorizontalAlignment="Left" Margin="216,112,0,0" VerticalAlignment="Top"/>
@@ -112,7 +242,7 @@
                 <Button FontSize="20" Content="Pridaj" HorizontalAlignment="Left" Margin="406,227,0,0" VerticalAlignment="Top" Width="121" Height="46" Click="Button_Click_11"/>
                 <Label FontSize="20" Name="Hlaska17" HorizontalContentAlignment="Center" Foreground="Red" Content="" HorizontalAlignment="Left" Margin="252,303,0,0" VerticalAlignment="Top" Width="448"/>
             </Grid>
-            <Grid Visibility="Visible" Name="Uloha18">
+            <Grid Visibility="Collapsed" Name="Uloha18">
                 <Label FontSize="15" Content="Zadaj list vlasntníctva:" HorizontalAlignment="Left" Margin="145,55,0,0" VerticalAlignment="Top" Width="158"/>
                 <Label FontSize="15" Content="Zadaj čislo katastra:" HorizontalAlignment="Left" Margin="147,89,0,0" VerticalAlignment="Top" Width="147"/>
                 <Label FontSize="15" Content="Súpistné číslo:" HorizontalAlignment="Left" Margin="147,125,0,0" VerticalAlignment="Top" Width="121"/>
@@ -133,9 +263,12 @@
                 <TextBox Name="TBNazUzUloha21" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="454,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
                 <Label FontSize="20" Name="Hlaska21" HorizontalContentAlignment="Center" Foreground="Red" Content="" HorizontalAlignment="Left" Margin="252,159,0,0" VerticalAlignment="Top" Width="448"/>
                 <Button FontSize="20" Content="Pridaj" HorizontalAlignment="Left" Margin="648,79,0,0" VerticalAlignment="Top" Width="94" Height="36" Click="Button_Click_16"/>
+                <ListView Name="Uloha21LW" HorizontalAlignment="Left" Height="174" VerticalAlignment="Top" Width="552" Margin="201,269,0,0"/>
             </Grid>
         </Grid>
         <Label Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+
 
     </Grid>
 </Window> 

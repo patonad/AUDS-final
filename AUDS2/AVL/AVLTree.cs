@@ -6,11 +6,12 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using AUDS2.AVL;
 using Microsoft.Win32;
 
 namespace AVL
 {
-    public class AvlTree<T> where T : IComparable<T>
+    public class AvlTree<T>:IEnumerable<T> where T : IComparable<T>
 
     {
         public AvlNode<T> Root { get; set; }
@@ -354,7 +355,7 @@ namespace AVL
                 Find(data);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 return false;
             }
@@ -579,56 +580,6 @@ namespace AVL
             }
             return list;
         }
-        public void LevelOrderConsole()
-        {
-            Queue<AvlNode<T>> stack = new Queue<AvlNode<T>>();
-            stack.Enqueue(Root);
-            List<AvlNode<T>> tree = new List<AvlNode<T>>();
-            while (stack.Count > 0 && stack.Count < Math.Pow(2, Root.Vyska + 2))
-            {
-                var actual = stack.Dequeue();
-                tree.Add(actual);
-                if (actual == null)
-                {
-                    stack.Enqueue(null);
-                    stack.Enqueue(null);
-                }
-                else
-                {
-                    if (actual.Left != null) stack.Enqueue(actual.Left);
-                    else stack.Enqueue(null);
-                    if (actual.Right != null) stack.Enqueue(actual.Right);
-                    else stack.Enqueue(null);
-                }
-            }
-
-            int height = Root.Vyska;
-            int deep = 0;
-            string indent = new string(' ', (int)(Math.Pow(2, Root.Vyska) - 1));
-            string spaces = new string(' ', (int)(Math.Pow(2, Root.Vyska + 1) - 1));
-            int size = (int)Math.Pow(2, Root.Vyska + 1);
-            int count = 1;
-            int index = 0;
-            for (int i = 0; i < size; i += (int)Math.Pow(2, deep))
-            {
-                Console.Write(indent);
-                for (int j = index; j < count; j++)
-                {
-                    if (tree.ToArray()[j] != null) Console.Write(tree.ToArray()[j].Data + "" + tree.ToArray()[j].Vyska);
-                    else Console.Write(" ");
-                    Console.Write(spaces);
-                    index++;
-                }
-
-                Console.WriteLine();
-
-                deep++;
-                indent = new string(' ', (int)(Math.Pow(2, (height - deep)) - 1));
-                spaces = new string(' ', (int)(Math.Pow(2, (height - deep) + 1) - 1));
-                count += (int)Math.Pow(2, deep);
-
-            }
-        }
         public AvlNode<T> InOrderPredchodca(AvlNode<T> node)
         {
             
@@ -640,6 +591,15 @@ namespace AVL
             return curr;
         }
 
-       
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return new AVLEnumerator<T>(Root);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }

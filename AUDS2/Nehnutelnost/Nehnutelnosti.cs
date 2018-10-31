@@ -13,6 +13,7 @@ namespace AUDS2.Nehnutelnost
             Cislo = cislo;
             Adresa = adresa;
             Popis = popis;
+            TrvalýPobyt =new List<Obcan.Obcan>();
         }
         public int CompareTo(Nehnutelnosti other)
         {
@@ -23,7 +24,10 @@ namespace AUDS2.Nehnutelnost
         public string Popis { get; set; }
         public List<Obcan.Obcan> TrvalýPobyt { get; set; }
         public ListVlasnictva.ListVlasnictva ListVlasnictva { get; set; }
+        public override string ToString()
+        {
+            return "Číslo: " + $"{Cislo,8}" + "  Adresa: " + $"{Adresa,15}" + "  Popis: " + $"{Popis,8}";
+        }
 
-        
     }
 }

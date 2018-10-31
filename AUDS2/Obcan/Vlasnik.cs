@@ -22,5 +22,10 @@ namespace AUDS2.Obcan
         {
             return Obcan.CompareTo(other.Obcan);
         }
+
+        public override string ToString()
+        {
+            return Obcan.ToString() + "  Podiel je:  "+Podiel;
+        }
     }
 }

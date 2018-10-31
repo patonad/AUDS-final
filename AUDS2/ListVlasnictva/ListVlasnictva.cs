@@ -10,13 +10,14 @@ using AVL;
 
 namespace AUDS2.ListVlasnictva
 {
-    public class ListVlasnictva
+    public class ListVlasnictva : IComparable<ListVlasnictva>
     {
         public ListVlasnictva(KatUzemie.KatUzemie uzemie, int cisloListu)
         {
             Uzemie = uzemie;
             CisloListu = cisloListu;
             NehnutelnostiNaListe = new AvlTree<Nehnutelnosti>();
+            podiely = new AvlTree<Vlasnik>();
         }
 
         public KatUzemie.KatUzemie Uzemie { get; set; }
@@ -26,8 +27,8 @@ namespace AUDS2.ListVlasnictva
         public int CisloListu { get; set; }
         public AvlTree<Vlasnik> podiely { get; set; }
 
-        public int CompareTo(ListVlasnictva
-            other)
+
+        public int CompareTo(ListVlasnictva other)
         {
             return CisloListu.CompareTo(other.CisloListu);
         }

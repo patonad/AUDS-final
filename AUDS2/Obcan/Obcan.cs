@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using AUDS2.KatUzemie;
+using AUDS2.ListVlasnictva;
 using AUDS2.Nehnutelnost;
 using AVL;
 
@@ -17,7 +19,7 @@ namespace AUDS2.Obcan
             Priezvisko = priezvisko;
             RodCislo = rodCislo;
             DatNarodenia = datNarodenia;
-            nehnutelnosti = new AvlTree<Nehnutelnosti>();
+            ListyVlasnictva = new List<ListVlasnictva.ListVlasnictva>();
         }
 
         public string Meno { get; set; }
@@ -25,10 +27,16 @@ namespace AUDS2.Obcan
         public string RodCislo { get; set; }
         public DateTime? DatNarodenia { get; set; }
         public Nehnutelnosti TrvalyPobyt { get; set; }
-        public AvlTree<Nehnutelnosti> nehnutelnosti { get; set; }
+        public List<ListVlasnictva.ListVlasnictva> ListyVlasnictva { get; set; }
         public int CompareTo(Obcan other)
         {
             return RodCislo.CompareTo(other.RodCislo);
+        }
+
+        override public string ToString()
+        {
+
+            return "Meno: " + $"{Meno,15}" + "   Priezvisko: " + $"{Priezvisko,15}" + "   Rodné číslo: " + RodCislo;
         }
     }
 }

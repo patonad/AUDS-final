@@ -19,5 +19,6 @@ namespace AUDS2.Nehnutelnost
         {
             return Nehnutelnost.Cislo.CompareTo(other.Nehnutelnost.Cislo);
         }
+        
     }
 }

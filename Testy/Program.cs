@@ -11,10 +11,12 @@ namespace Testy
     {
         static void Main(string[] args)
         {
-            Test();
+            Console.WriteLine(Test3());
+            Console.ReadLine();
+
         }
 
-        public static bool test3()
+        public static bool Test3()
         {
             for (int i = 0; i < 100; i++) // kolko trestov s inou nasadou
             {
@@ -23,7 +25,7 @@ namespace Testy
                 var list = new List<int>();
                 var rand = new Random(i);
                 var a = new AvlTree<int>();
-                for (int j = 0; j < 10000;)  // kolko prvkov sa ma vlozit
+                for (int j = 0; j < 1000;)  // kolko prvkov sa ma vlozit
                 {
                     //Console.WriteLine(j);
                     var cislo = rand.Next(0, 10000000);
@@ -76,21 +78,22 @@ namespace Testy
         {
 
             var a = new AvlTree<int>();
-            for (int i = 0; i <= 10000000; i++)
+            for (int i = 0; i <= 100; i++)
             {
                 a.Insert(i);
             }
-          ;
-            for (int i = 5000000; i >= 0; i--)
+
+            foreach (var VARIABLE in a)
             {
-                a.Delete(i);
+                Console.WriteLine(VARIABLE);
             }
+           
             return true;
         }
 
         public static bool Test()
         {
-            for (int i = 0; i < 1000; i++)  // kolko testov
+            for (int i = 0; i < 100; i++)  // kolko testov
             {
                 Console.WriteLine(i);
                 var a = new AvlTree<int>();
@@ -107,11 +110,15 @@ namespace Testy
                         {
                             a.Insert(c);
                             list.Add(c);
-                            if (!a.SkontrolujVysku())
+                            if (j % 1000 == 0)
                             {
-                                return false;
+                                if (!a.SkontrolujVysku())
+                                {
+                                    return false;
+                                }
                             }
                         }
+                            
                     }
                     else
                     {
@@ -120,9 +127,12 @@ namespace Testy
                         {
                             a.Delete(c);
                             list.Remove(c);
-                            if (!a.SkontrolujVysku())
+                            if (j % 1000 == 0)
                             {
-                                return false;
+                                if (!a.SkontrolujVysku())
+                                {
+                                    return false;
+                                }
                             }
                         }
                     }

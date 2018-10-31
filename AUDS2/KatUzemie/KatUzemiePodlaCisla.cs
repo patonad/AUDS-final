@@ -29,13 +29,13 @@ namespace AUDS2.KatUzemie
         public Nehnutelnosti GetNehnutelnostPodlaCisla(int cislo)
         {
             return KatUzemie.StromNehnutelnostiPodlaCisla.Find(
-                new NehnutelnostiPodlaC(new Nehnutelnosti(cislo, "", ""))).Nehnutelnost;
+                new Nehnutelnosti(cislo, "", ""));
         }
 
         public ListVlasnictva.ListVlasnictva GetListVlasnictvaPodlaCisla(int cislo)
         {
             return KatUzemie.StromListovVlasnictvaPodlaCisla.Find(
-                new ListVlasnictvaPodlaC(new ListVlasnictva.ListVlasnictva(null, cislo))).ListVlasnictva;
+                new ListVlasnictva.ListVlasnictva(null, cislo));
         }
     }
 }
