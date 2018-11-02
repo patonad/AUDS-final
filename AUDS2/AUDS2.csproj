@@ -58,6 +58,7 @@
     </ApplicationDefinition>
     <Compile Include="AVL\AVLEnumerator.cs" />
     <Compile Include="KatUzemie\KatUzemie.cs" />
+    <Compile Include="KatUzemie\KatUzemieObcanPodlaCisla.cs" />
     <Compile Include="KatUzemie\KatUzemiePodlaCisla.cs" />
     <Compile Include="KatUzemie\KatUzemiePodlaNazvu.cs" />
     <Compile Include="ListVlasnictva\ListVlasnictva.cs" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AVL;
 
 namespace AUDS2.Nehnutelnost
 {
@@ -13,7 +14,7 @@ namespace AUDS2.Nehnutelnost
             Cislo = cislo;
             Adresa = adresa;
             Popis = popis;
-            TrvalýPobyt =new List<Obcan.Obcan>();
+            TrvalýPobyt =new AvlTree<Obcan.Obcan>();
         }
         public int CompareTo(Nehnutelnosti other)
         {
@@ -22,7 +23,7 @@ namespace AUDS2.Nehnutelnost
         public int Cislo { get; set; }
         public string Adresa { get; set; }
         public string Popis { get; set; }
-        public List<Obcan.Obcan> TrvalýPobyt { get; set; }
+        public AvlTree<Obcan.Obcan> TrvalýPobyt { get; set; }
         public ListVlasnictva.ListVlasnictva ListVlasnictva { get; set; }
         public override string ToString()
         {
