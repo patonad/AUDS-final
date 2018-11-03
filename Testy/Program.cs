@@ -38,7 +38,7 @@ namespace Testy
 
                 }
 
-                if (a.SkontrolujVysku() == false)
+                if (a.SkontrolujVysku(a.Root) == false)
                     return false;
 
                 var kolko = rand.Next(0, list.Count); // kolko prvkov sa ma odstranit
@@ -48,7 +48,7 @@ namespace Testy
                     // Console.WriteLine(j);
                     var ktory = rand.Next(0, list.Count - 1);
                     a.Delete(list[ktory]);
-                    if (a.SkontrolujVysku() == false)
+                    if (a.SkontrolujVysku(a.Root) == false)
                         return false;
                     list.Remove(list[ktory]);
                 }
@@ -112,7 +112,7 @@ namespace Testy
                             list.Add(c);
                             if (j % 1000 == 0)
                             {
-                                if (!a.SkontrolujVysku())
+                                if (!a.SkontrolujVysku(a.Root))
                                 {
                                     return false;
                                 }
@@ -129,7 +129,7 @@ namespace Testy
                             list.Remove(c);
                             if (j % 1000 == 0)
                             {
-                                if (!a.SkontrolujVysku())
+                                if (!a.SkontrolujVysku(a.Root))
                                 {
                                     return false;
                                 }

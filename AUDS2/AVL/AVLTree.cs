@@ -535,12 +535,10 @@ namespace AVL
 
         }
 
-        public bool SkontrolujVysku()
+        public bool SkontrolujVysku(AvlNode<T> node)
         {
-            var node = Root;
-            int lavaVyska = VyskaRec(node.Left);
             int pravaVyska = VyskaRec(node.Right);
-
+            int lavaVyska = VyskaRec(node.Left);
             if (node.Vyska ==Math.Max(lavaVyska,pravaVyska))
             {
                 return true;
@@ -554,9 +552,9 @@ namespace AVL
             {
                 return vyska;
             }
-            int left = VyskaRec(node.Left);
-            int right = VyskaRec(node.Right);
-            vyska = Math.Max(left, right) + 1;
+            int pavyPodstr = VyskaRec(node.Right);
+            int lavyPodst = VyskaRec(node.Left);
+            vyska = Math.Max(lavyPodst, pavyPodstr) + 1;
             return vyska;
         }
         public List<T> InOrder()

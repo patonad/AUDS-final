@@ -1054,5 +1054,15 @@ namespace AUDS2
 
             Uloha12pLW.ItemsSource = pr.Uloha12VratPodiely(kat, list);
         }
+
+        private void Button_Click_50(object sender, RoutedEventArgs e)
+        {
+            pr.uloz();
+        }
+
+        private void Button_Click_51(object sender, RoutedEventArgs e)
+        {
+            pr.nacitaj();
+        }
     }
 }

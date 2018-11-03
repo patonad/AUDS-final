@@ -71,9 +71,11 @@ namespace AVL
             StromKatUzemiPodlaCisla = new AvlTree<KatUzemiePodlaCisla>();
             StromkatUzemiPodlaNazvu = new AvlTree<KatUzemiePodlaNazvu>();
             StromObcanoPodlaRc = new AvlTree<Obcan>();
-           //generuj();
-          nacitaj();
-          //uloz();
+           
+           
+            //generuj();
+            //nacitaj();
+            //uloz();
             
 
             //var katt = new KatUzemie(1, "a");
@@ -407,7 +409,7 @@ namespace AVL
                 "Horváth","Kováč","Varga","Tóth","Bednár","Szabó","Molnár","Balog","Lukáč","Slovák","Kučera"
             };
             List<Obcan> obcania = new List<Obcan>();
-            for (int i = 0; i < 20000; i++)  //kolko obcanov
+            for (int i = 0; i < 10000; i++)  //kolko obcanov
             {
                 var ob = new Obcan(mena[ran.Next(0, mena.Length)], priezviska[ran.Next(0, priezviska.Length)],
                     i.ToString(), DateTime.Now.Date);
@@ -423,7 +425,7 @@ namespace AVL
                 katastre.Add(kat);
             }
             List<ListVlasnictva>listy =new List<ListVlasnictva>();
-            for (int i = 0; i < 10000; i++) // listy vlasnictva
+            for (int i = 0; i < 5000; i++) // listy vlasnictva
             {
                 var kat = katastre[ran.Next(0, katastre.Count)];
                 var list = new ListVlasnictva(kat,i);
