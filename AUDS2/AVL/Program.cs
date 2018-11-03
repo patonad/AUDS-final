@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -70,8 +71,10 @@ namespace AVL
             StromKatUzemiPodlaCisla = new AvlTree<KatUzemiePodlaCisla>();
             StromkatUzemiPodlaNazvu = new AvlTree<KatUzemiePodlaNazvu>();
             StromObcanoPodlaRc = new AvlTree<Obcan>();
-            generuj();
-            uloz();
+           //generuj();
+          nacitaj();
+          //uloz();
+            
 
             //var katt = new KatUzemie(1, "a");
             //var katt2 = new KatUzemie(2, "b"); // mam
@@ -407,7 +410,7 @@ namespace AVL
             for (int i = 0; i < 20000; i++)  //kolko obcanov
             {
                 var ob = new Obcan(mena[ran.Next(0, mena.Length)], priezviska[ran.Next(0, priezviska.Length)],
-                    i.ToString(), DateTime.Now);
+                    i.ToString(), DateTime.Now.Date);
                 StromObcanoPodlaRc.Insert(ob);
                 obcania.Add(ob);
             }
@@ -482,100 +485,190 @@ namespace AVL
           
         }
 
+        public void nacitaj()
+        {
+            StreamReader srObcan = new StreamReader("Obcan.csv");
+            StreamReader srNeh = new StreamReader("nehnutelnost.csv");
+            StreamReader srList = new StreamReader("listVlasnictva.csv");
+            StreamReader srKat = new StreamReader("katastre.csv");
+            StreamReader srVla = new StreamReader("vlasnici.csv");
+
+            while (!srKat.EndOfStream)
+            {
+                var lineA = srKat.ReadLine().Split(';');
+                var kat = new KatUzemie(Int32.Parse(lineA[1]), lineA[0]);
+                StromKatUzemiPodlaCisla.Insert(new KatUzemiePodlaCisla(kat));
+                StromkatUzemiPodlaNazvu.Insert(new KatUzemiePodlaNazvu(kat));
+                for (int i = 2; i < lineA.Length; i++)
+                {
+                    kat.StromListovVlasnictvaPodlaCisla.Insert(new ListVlasnictva(kat, Int32.Parse(lineA[i])));
+                }
+            }
+
+            while (!srObcan.EndOfStream)
+            {
+                var lineA = srObcan.ReadLine().Split(';');
+                var datum = lineA[3].Split(' ');
+                 
+                StromObcanoPodlaRc.Insert(new Obcan(lineA[0], lineA[1], lineA[2],
+                    new DateTime(Int32.Parse(datum[2].Replace('.',' ')), Int32.Parse(datum[1].Replace('.', ' ')), (Int32.Parse(datum[0].Replace('.', ' '))))));
+            }
+
+            KatUzemie katr = null;
+            while (!srNeh.EndOfStream)
+            {
+                var lineA = srNeh.ReadLine().Split(';');
+                if (katr == null)
+                {
+                    katr = StromkatUzemiPodlaNazvu.Find(new KatUzemiePodlaNazvu(new KatUzemie(0, lineA[0]))).KatUzemie;
+                }
+
+                if (katr.Nazov != lineA[0])
+                {
+                    katr = StromkatUzemiPodlaNazvu.Find(new KatUzemiePodlaNazvu(new KatUzemie(0, lineA[0]))).KatUzemie;
+                }
+
+                var neh = new Nehnutelnosti(Int32.Parse(lineA[1]), lineA[2], lineA[3]);
+                katr.StromNehnutelnostiPodlaCisla.Insert(neh);
+                for (int i = 4; i < lineA.Length; i++)
+                {
+                    var ob = StromObcanoPodlaRc.Find(new Obcan("", "", lineA[i], null));
+                    ob.TrvalyPobyt = neh;
+                    neh.TrvalýPobyt.Insert(ob);
+                }
+
+
+            }
+
+            while (!srList.EndOfStream)
+            {
+                var lineA = srList.ReadLine().Split(';');
+                if (katr == null)
+                {
+                    katr = StromkatUzemiPodlaNazvu.Find(new KatUzemiePodlaNazvu(new KatUzemie(0, lineA[0]))).KatUzemie;
+                }
+
+                if (katr.Nazov != lineA[0])
+                {
+                    katr = StromkatUzemiPodlaNazvu.Find(new KatUzemiePodlaNazvu(new KatUzemie(0, lineA[0]))).KatUzemie;
+                }
+
+                var list = katr.StromListovVlasnictvaPodlaCisla.Find(new ListVlasnictva(null, Int32.Parse(lineA[1])));
+                for (int i = 2; i < lineA.Length; i++)
+                {
+                    var neh = katr.StromNehnutelnostiPodlaCisla.Find(new Nehnutelnosti(Int32.Parse(lineA[i]), "", ""));
+                    list.NehnutelnostiNaListe.Insert(neh);
+                    neh.ListVlasnictva = list;
+                }
+               
+
+            }
+
+            while (!srVla.EndOfStream)
+            {
+                var lineA = srVla.ReadLine().Split(';');
+                if (katr == null)
+                {
+                    katr = StromkatUzemiPodlaNazvu.Find(new KatUzemiePodlaNazvu(new KatUzemie(0, lineA[0]))).KatUzemie;
+                }
+
+                if (katr.Nazov != lineA[0])
+                {
+                    katr = StromkatUzemiPodlaNazvu.Find(new KatUzemiePodlaNazvu(new KatUzemie(0, lineA[0]))).KatUzemie;
+                }
+
+                var list = katr.StromListovVlasnictvaPodlaCisla.Find(new ListVlasnictva(null, Int32.Parse(lineA[1])));
+                for (int i = 2; i < lineA.Length; i++)
+                {
+                    var ob = StromObcanoPodlaRc.Find(new Obcan("", "", lineA[i], null));
+                    i++;
+                    list.podiely.Insert(new Vlasnik(Int32.Parse(lineA[i]), ob));
+                    ob.ListyVlasnictva.Add(list);
+                }
+
+
+            }
+        }
+
         public void uloz()
         {
-            StreamWriter sw = new StreamWriter("Obcan.txt");
+            StringBuilder sbo = new StringBuilder();
             foreach (var obcan in StromObcanoPodlaRc)
             {
-                sw.WriteLine(obcan.Meno+ "/"+ obcan.Priezvisko+"/"+obcan.RodCislo+"/"+obcan.DatNarodenia);
-                
+                string s = obcan.Meno + ";" + obcan.Priezvisko + ";" + obcan.RodCislo + ";" + obcan.DatNarodenia;
+
                 foreach (var list in obcan.ListyVlasnictva)
                 {
-                   sw.WriteLine(""+list.CisloListu +"/"+ list.Uzemie.Nazov);
+                    s +=(";" + list.CisloListu + ";" + list.Uzemie.Nazov);
                 }
-                sw.WriteLine("|");
+
+                sbo.AppendLine(s);
             }
-            sw.Flush();
-            sw.Close();
-            sw = new StreamWriter("nehnutelnost.txt");
+            File.WriteAllText("Obcan.csv", sbo.ToString());
+
+            StringBuilder sbn = new StringBuilder();
             foreach (var kat in StromKatUzemiPodlaCisla)
             {
-                sw.WriteLine(kat.KatUzemie.Nazov);
                 foreach (var neh in kat.KatUzemie.StromNehnutelnostiPodlaCisla)
                 {
-                    string s = neh.Cislo + "/" + neh.Adresa + "/" + neh.Popis + "/";
-                    s += neh.ListVlasnictva == null
-                        ? "null"
-                        : neh.ListVlasnictva.CisloListu +""; 
-                    sw.WriteLine(s);
-                    foreach (var pobyt in neh.TrvalýPobyt)
+                    string s = kat.KatUzemie.Nazov;
+                    s += ";" + neh.Cislo + ";" + neh.Adresa + ";" + neh.Popis;
+                    foreach (var VARIABLE in neh.TrvalýPobyt)
                     {
-                        sw.WriteLine(pobyt.RodCislo);
+                        s += ";" + VARIABLE.RodCislo;
                     }
-                    sw.WriteLine("|");
-                }
 
+                    sbn.AppendLine(s);
+                }
             }
-            sw.Flush();
-            sw.Close();
-            sw = new StreamWriter("listVlasnictva.txt");
+            File.WriteAllText("nehnutelnost.csv", sbn.ToString());
+
+            StringBuilder sbl = new StringBuilder();
+            StringBuilder sbv = new StringBuilder();
+
+
             foreach (var kat in StromKatUzemiPodlaCisla)
             {
-                sw.WriteLine(kat.KatUzemie.Nazov);
+                
                 foreach (var list in kat.KatUzemie.StromListovVlasnictvaPodlaCisla)
                 {
-                    sw.WriteLine(list.CisloListu+"");
-                    if (list.NehnutelnostiNaListe.Root != null)
+                    string sl = kat.KatUzemie.Nazov;
+                    string sv = kat.KatUzemie.Nazov;
+                    sl += ";" + list.CisloListu;
+                    sv += ";" + list.CisloListu;
+                    foreach (var neh in list.NehnutelnostiNaListe)
                     {
-                        foreach (var neh in list.NehnutelnostiNaListe)
-                        {
-                            sw.WriteLine(neh.Cislo);
-                        }
-                        sw.WriteLine("|");
+                        sl += ";" + neh.Cislo;
+                    }
 
-                    }
-                    else
-                    { 
-                        sw.WriteLine("null");
-                    }
-                    if (list.podiely.Root != null)
+                    foreach (var vlasnik in list.podiely)
                     {
-                        foreach (var pod in list.podiely)
-                        {
-                            sw.WriteLine(pod.Obcan.RodCislo +"/"+pod.Podiel);
-                        }
-                        sw.WriteLine("|");
-
+                        sv += ";" + vlasnik.Obcan.RodCislo + ";" + vlasnik.Podiel;
                     }
-                    else
-                    {
-                        sw.WriteLine("null");
-                    }
+                    sbl.AppendLine(sl);
+                    sbv.AppendLine(sv);
 
                 }
                 
 
+
             }
-            sw.Flush();
-            sw.Close();
-            sw = new StreamWriter("kataster.txt");
+            
+            File.WriteAllText("listVlasnictva.csv", sbl.ToString());
+            File.WriteAllText("vlasnici.csv", sbv.ToString());
+
+            StringBuilder sb = new StringBuilder();
             foreach (var kat in StromKatUzemiPodlaCisla)
             {
-                sw.WriteLine(kat.KatUzemie.Nazov + "/" + kat.KatUzemie.Cislo);
-                if (kat.KatUzemie.StromListovVlasnictvaPodlaCisla.Root != null)
+                string s = kat.KatUzemie.Nazov + ";" + kat.KatUzemie.Cislo;
+                foreach (var list in kat.KatUzemie.StromListovVlasnictvaPodlaCisla)
                 {
-                    foreach (var list in kat.KatUzemie.StromListovVlasnictvaPodlaCisla)
-                    {
-                        sw.WriteLine(list.CisloListu + "");
-                    }
-                }
-                else
-                {
-                    sw.WriteLine("null");
+                  s += ";"+list.CisloListu;
                 }
 
-               
+                sb.AppendLine(s);
             }
+            File.WriteAllText("katastre.csv",sb.ToString());
 
         }
 
