@@ -24,6 +24,23 @@ namespace AUDS2.KatUzemie
             StromListovVlastnictvaPodlaCisla = new AvlTree<ListVlasnictva.ListVlastnictva>();
         }
 
- 
+        public int MaxList { get; set; }
+
+        public void PridajMaxList(int a)
+        {
+            if (MaxList < a)
+            {
+                MaxList = a;
+            }
+        }
+        public int MaxNeh { get; set; }
+
+        public void PridajMaxNeh(int a)
+        {
+            if (MaxNeh < a)
+            {
+                MaxNeh = a;
+            }
+        }
     }
 }

@@ -23,19 +23,82 @@ namespace AVL
         public AvlTree<KatUzemiePodlaCisla> StromKatUzemiPodlaCisla { get; set; }
         public AvlTree<Obcan> StromObcanoPodlaRc { get; set; }
 
-        public string Uloha21(string nazov, int cislo)
+        public void Uloha21(string nazov, int cislo)
         {
-            var kat = new KatUzemie(cislo, nazov);
-            if (!StromkatUzemiPodlaNazvu.Contains(new KatUzemiePodlaNazvu(kat)) &&
-                !StromKatUzemiPodlaCisla.Contains(new KatUzemiePodlaCisla(kat)))
-            {
+           var kat = new KatUzemie(cislo,nazov);
                 StromKatUzemiPodlaCisla.Insert(new KatUzemiePodlaCisla(kat));
                 StromkatUzemiPodlaNazvu.Insert(new KatUzemiePodlaNazvu(kat));
-                return "Kataster ból pridaný";
+            
+        }
+        public void Uloha22(int cisloK1, int cisloK2)
+        {
+            var kat1 = StromKatUzemiPodlaCisla.Find(new KatUzemiePodlaCisla(new KatUzemie(cisloK1, "")));
+            var kat2 = StromKatUzemiPodlaCisla.Find(new KatUzemiePodlaCisla(new KatUzemie(cisloK2, "")));
+            foreach (var list in kat1.KatUzemie.StromListovVlastnictvaPodlaCisla)
+            {
+                foreach (var neh in list.NehnutelnostiNaListe)
+                {
+                    neh.Cislo = kat2.KatUzemie.MaxNeh + 1;
+                    kat2.KatUzemie.PridajMaxNeh(neh.Cislo);
+                    kat2.KatUzemie.StromNehnutelnostiPodlaCisla.Insert(neh);
+                }
+
+                list.CisloListu = kat2.KatUzemie.MaxList + 1;
+                list.Uzemie = kat2.KatUzemie;
+                kat2.KatUzemie.PridajMaxList(list.CisloListu);
+                kat2.KatUzemie.StromListovVlastnictvaPodlaCisla.Insert(list);
             }
+            StromKatUzemiPodlaCisla.Delete(kat1);
+            StromkatUzemiPodlaNazvu.Delete(new KatUzemiePodlaNazvu(kat1.KatUzemie));
+        }
 
-            return "Kataster už exzistuje";
+        public void oo()
+        {
+            foreach (var katUzemiePodlaCisla in StromKatUzemiPodlaCisla)
+            {
+                foreach (var nehnutelnosti in katUzemiePodlaCisla.KatUzemie.StromListovVlastnictvaPodlaCisla)
+                {
+                    foreach (var nehNaListe in nehnutelnosti.NehnutelnostiNaListe)
+                    {
+                        foreach (var VARIABLE in StromKatUzemiPodlaCisla)
+                        {
+                            foreach (var var1 in VARIABLE.KatUzemie.StromListovVlastnictvaPodlaCisla)
+                            {
+                                foreach (var vehnaliste2 in var1.NehnutelnostiNaListe)
+                                {
+                                    if (katUzemiePodlaCisla.KatUzemie.Cislo != VARIABLE.KatUzemie.Cislo)
+                                    {
+                                        if (nehNaListe.Cislo == vehnaliste2.Cislo)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 
+            }
+            foreach (var katUzemiePodlaCisla in StromKatUzemiPodlaCisla)
+            {
+                foreach (var nehnutelnosti in katUzemiePodlaCisla.KatUzemie.StromNehnutelnostiPodlaCisla)
+                {
+                    foreach (var VARIABLE in StromKatUzemiPodlaCisla)
+                    {
+                        foreach (var var1 in VARIABLE.KatUzemie.StromNehnutelnostiPodlaCisla)
+                        {
+                            if (katUzemiePodlaCisla.KatUzemie.Cislo != VARIABLE.KatUzemie.Cislo)
+                            {
+                                if (nehnutelnosti.Cislo == var1.Cislo)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         public List<KatUzemiePodlaNazvu> GetKatUzemia()
@@ -331,16 +394,30 @@ namespace AVL
         {
             var neh = StromKatUzemiPodlaCisla.Find(new KatUzemiePodlaCisla(new KatUzemie(kat, ""))).KatUzemie
                 .StromNehnutelnostiPodlaCisla.Find(new Nehnutelnosti(cislo, "", ""));
-
             var obcan1 = StromObcanoPodlaRc.Find(new Obcan("", "", rc1, null));
             var obcan2 = StromObcanoPodlaRc.Find(new Obcan("", "", rc2, null));
             var list = neh.ListVlasnictva;
-            var vlsnik = list.Podiely.Find(new Vlastnik(0, obcan1));
-            obcan1.ListyVlasnictva.Remove(list);
-            list.Podiely.Delete(vlsnik);
-            vlsnik.Obcan = obcan2;
-           list.Podiely.Insert(vlsnik);
-            obcan2.ListyVlasnictva.Add(list);
+            try
+            {
+                var vlasnik2 = list.Podiely.Find(new Vlastnik(0, obcan2));
+                var vlasnik = list.Podiely.Find(new Vlastnik(0, obcan1));
+                vlasnik2.Podiel += vlasnik.Podiel;
+                obcan1.ListyVlasnictva.Remove(list);
+                list.Podiely.Delete(vlasnik);
+            }
+            catch (Exception)
+            {
+                var vlsnik = list.Podiely.Find(new Vlastnik(0, obcan1));
+
+                obcan1.ListyVlasnictva.Remove(list);
+                list.Podiely.Delete(vlsnik);
+
+                vlsnik.Obcan = obcan2;
+
+                list.Podiely.Insert(vlsnik);
+                obcan2.ListyVlasnictva.Add(list);
+            }
+            
         }
         public void Uloha13(int kat, int clist, string rc)
         {
@@ -380,7 +457,9 @@ namespace AVL
             var kat = StromKatUzemiPodlaCisla.Find(new KatUzemiePodlaCisla(new KatUzemie(kataster, "")));
             var listVl = kat.KatUzemie.StromListovVlastnictvaPodlaCisla.Find(new ListVlastnictva(null, list));
             kat.KatUzemie.StromNehnutelnostiPodlaCisla.Insert(neh);
+            kat.KatUzemie.PridajMaxNeh(neh.Cislo);
             listVl.NehnutelnostiNaListe.Insert(neh);
+            listVl.PridajMax(cislo);
         }
 
         public void Uloha12ZmenPodiel(int kat,int list, string rc, int pod)
@@ -411,7 +490,7 @@ namespace AVL
                 .StromListovVlastnictvaPodlaCisla.Find(new ListVlastnictva(null, cisloListu));
             foreach (var vlasnik in list.Podiely)
             {
-                retList.Add(vlasnik.ToString() +"/" +vlasnik.Obcan.RodCislo);
+                retList.Add(vlasnik.ToString());
             }
 
             return retList;
@@ -420,7 +499,36 @@ namespace AVL
         public void Uloha17(string nazov,int cislo)
         {
             var kat = StromkatUzemiPodlaNazvu.Find(new KatUzemiePodlaNazvu(new KatUzemie(-1, nazov)));
-            kat.KatUzemie.StromListovVlastnictvaPodlaCisla.Insert(new ListVlastnictva(kat.KatUzemie,cislo));
+            var list = new ListVlastnictva(kat.KatUzemie, cislo);
+            kat.KatUzemie.StromListovVlastnictvaPodlaCisla.Insert(list);
+            kat.KatUzemie.PridajMaxList(list.CisloListu);
+        }
+
+        public void Uloha19(int list1, int list2, int kat)
+        {
+            var katt = StromKatUzemiPodlaCisla.Find(new KatUzemiePodlaCisla(new KatUzemie(kat, "")));
+            var listt1 = katt.GetListVlasnictvaPodlaCisla(list1);
+            var listt2 = katt.GetListVlasnictvaPodlaCisla(list2);
+            if (listt2.MAX != 0)
+            {
+                throw new System.Exception("List nieje prazdny");
+            }
+            katt.KatUzemie.StromListovVlastnictvaPodlaCisla.Delete(listt1);
+            katt.KatUzemie.StromListovVlastnictvaPodlaCisla.Delete(listt2);
+            listt1.CisloListu = list2;
+            katt.KatUzemie.StromListovVlastnictvaPodlaCisla.Insert(listt1);
+        }
+        public void Uloha20(int list, int sup, int kat)
+        {
+            var katt = StromKatUzemiPodlaCisla.Find(new KatUzemiePodlaCisla(new KatUzemie(kat, "")));
+            var listt = katt.GetListVlasnictvaPodlaCisla(list);
+            var neh = listt.NehnutelnostiNaListe.Find(new Nehnutelnosti(sup, "", ""));
+            listt.NehnutelnostiNaListe.Delete(neh);
+            katt.KatUzemie.StromNehnutelnostiPodlaCisla.Delete(neh);
+            foreach (var obcan in neh.TrvalýPobyt)
+            {
+                obcan.TrvalyPobyt = null;
+            }
         }
 
         public void PridajObcana(string meno, string priezvisko, string rc, DateTime? datum)
@@ -461,6 +569,7 @@ namespace AVL
                 var kat = katastre[ran.Next(0, katastre.Count)];
                 var list = new ListVlastnictva(kat,i);
                 kat.StromListovVlastnictvaPodlaCisla.Insert(list);
+                kat.PridajMaxList(list.CisloListu);
                 listy.Add(list);
             }
             List<Nehnutelnosti> nehnutelnost =new List<Nehnutelnosti>();
@@ -498,6 +607,7 @@ namespace AVL
                 var list = listy[ran.Next(0, listy.Count)];
                 if (list.Podiely.Root != null)
                 {
+                    list.PridajMax(neh.Cislo);
                     list.NehnutelnostiNaListe.Insert(neh); 
                     neh.ListVlasnictva =  list;
                 }
@@ -511,6 +621,7 @@ namespace AVL
                     foreach (var VARIABLE in list.NehnutelnostiNaListe)
                     {
                         kat.StromNehnutelnostiPodlaCisla.Insert(VARIABLE);
+                        kat.PridajMaxNeh(VARIABLE.Cislo);
                     }
                 }
 
@@ -534,7 +645,9 @@ namespace AVL
                 StromkatUzemiPodlaNazvu.Insert(new KatUzemiePodlaNazvu(kat));
                 for (int i = 2; i < lineA.Length; i++)
                 {
-                    kat.StromListovVlastnictvaPodlaCisla.Insert(new ListVlastnictva(kat, Int32.Parse(lineA[i])));
+                    var list = new ListVlastnictva(kat, Int32.Parse(lineA[i]));
+                    kat.StromListovVlastnictvaPodlaCisla.Insert(list);
+                    kat.PridajMaxList(list.CisloListu);
                 }
             }
 
@@ -563,6 +676,7 @@ namespace AVL
 
                 var neh = new Nehnutelnosti(Int32.Parse(lineA[1]), lineA[2], lineA[3]);
                 katr.StromNehnutelnostiPodlaCisla.Insert(neh);
+                katr.PridajMaxNeh(neh.Cislo);
                 for (int i = 4; i < lineA.Length; i++)
                 {
                     var ob = StromObcanoPodlaRc.Find(new Obcan("", "", lineA[i], null));
@@ -592,6 +706,7 @@ namespace AVL
                     var neh = katr.StromNehnutelnostiPodlaCisla.Find(new Nehnutelnosti(Int32.Parse(lineA[i]), "", ""));
                     list.NehnutelnostiNaListe.Insert(neh);
                     neh.ListVlasnictva = list;
+                    list.PridajMax(neh.Cislo);
                 }
                
 
