@@ -31,10 +31,10 @@ namespace AUDS2.KatUzemie
                 new Nehnutelnosti(cislo, "", ""));
         }
 
-        public ListVlasnictva.ListVlasnictva GetListVlasnictvaPodlaCisla(int cislo)
+        public ListVlasnictva.ListVlastnictva GetListVlasnictvaPodlaCisla(int cislo)
         {
-            return KatUzemie.StromListovVlasnictvaPodlaCisla.Find(
-                new ListVlasnictva.ListVlasnictva(null, cislo));
+            return KatUzemie.StromListovVlastnictvaPodlaCisla.Find(
+                new ListVlasnictva.ListVlastnictva(null, cislo));
         }
 
         override public string ToString()

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AUDS2.Obcan
 {
-    public class Vlasnik : IComparable<Vlasnik>
+    public class Vlastnik : IComparable<Vlastnik>
     {
-        public Vlasnik(int podiel, Obcan obcan)
+        public Vlastnik(int podiel, Obcan obcan)
         {
             Podiel = podiel;
             Obcan = obcan;
@@ -18,7 +18,7 @@ namespace AUDS2.Obcan
         public Obcan Obcan { get; set; }
 
 
-        public int CompareTo(Vlasnik other)
+        public int CompareTo(Vlastnik other)
         {
             return Obcan.CompareTo(other.Obcan);
         }

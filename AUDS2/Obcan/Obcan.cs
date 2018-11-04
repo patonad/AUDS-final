@@ -19,7 +19,7 @@ namespace AUDS2.Obcan
             Priezvisko = priezvisko;
             RodCislo = rodCislo;
             DatNarodenia = datNarodenia;
-            ListyVlasnictva = new List<ListVlasnictva.ListVlasnictva>();
+            ListyVlasnictva = new List<ListVlasnictva.ListVlastnictva>();
         }
 
         public string Meno { get; set; }
@@ -27,7 +27,7 @@ namespace AUDS2.Obcan
         public string RodCislo { get; set; }
         public DateTime? DatNarodenia { get; set; }
         public Nehnutelnosti TrvalyPobyt { get; set; }
-        public List<ListVlasnictva.ListVlasnictva> ListyVlasnictva { get; set; }
+        public List<ListVlasnictva.ListVlastnictva> ListyVlasnictva { get; set; }
         public int CompareTo(Obcan other)
         {
             return RodCislo.CompareTo(other.RodCislo);

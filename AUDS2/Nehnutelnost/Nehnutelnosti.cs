@@ -24,7 +24,7 @@ namespace AUDS2.Nehnutelnost
         public string Adresa { get; set; }
         public string Popis { get; set; }
         public AvlTree<Obcan.Obcan> TrvalýPobyt { get; set; }
-        public ListVlasnictva.ListVlasnictva ListVlasnictva { get; set; }
+        public ListVlasnictva.ListVlastnictva ListVlasnictva { get; set; }
         public override string ToString()
         {
             return "Číslo: " + $"{Cislo,8}" + "  Adresa: " + $"{Adresa,15}" + "  Popis: " + $"{Popis,8}";

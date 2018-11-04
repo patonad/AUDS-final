@@ -24,16 +24,16 @@ namespace AUDS2
     public partial class MainWindow : Window
     {
         private Program pr;
-        public List<string> podiely { get; set; }
+        public List<string> Podiely { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             pr = new Program();
             DataContext = pr;
-            podiely = new List<string>();
+            Podiely = new List<string>();
 
         }
-        private void schovaj()
+        private void Schovaj()
         {
             MenuVyhladaj.Visibility = Visibility.Collapsed;
             MenuPridaj.Visibility = Visibility.Collapsed;
@@ -63,25 +63,25 @@ namespace AUDS2
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             MenuVyhladaj.Visibility = Visibility.Visible;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             MenuPridaj.Visibility = Visibility.Visible;
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             MenuZmen.Visibility = Visibility.Visible;
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             MenuOdstran.Visibility = Visibility.Visible;
         }
       
@@ -91,7 +91,7 @@ namespace AUDS2
 
         private void Button_Click_8(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             Uloha16.Visibility = Visibility.Visible;
         }
 
@@ -124,7 +124,7 @@ namespace AUDS2
 
             try
             {
-                pr.pridajObcana(TBMenoUloha16.Text,TBPriezUloha16.Text,TBRCUloha16.Text,date);
+                pr.PridajObcana(TBMenoUloha16.Text,TBPriezUloha16.Text,TBRCUloha16.Text,date);
                 Hlaska16.Content = "Užívaťeľ pridaný";
             }
             catch (Exception )
@@ -132,12 +132,12 @@ namespace AUDS2
                 Hlaska16.Content = "Uzivatel exzistuje";
             }
 
-            Uloha16LW.ItemsSource = pr.getObcania();
+            Uloha16LW.ItemsSource = pr.GetObcania();
         }
 
         private void Button_Click_10(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             Uloha17.Visibility = Visibility.Visible;
         }
 
@@ -154,10 +154,9 @@ namespace AUDS2
                 Hlaska17.Content = "Nezadal si názov katastra";
                 return;
             }
-            
-            int list;
-            
-            if (!int.TryParse(TBCListuUloha17.Text, out list))
+
+
+            if (!int.TryParse(TBCListuUloha17.Text, out int list))
             {
                 Hlaska17.Content = "Zle zadané čislo listu";
                 return;
@@ -179,13 +178,13 @@ namespace AUDS2
 
         private void Button_Click_12(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             Uloha18.Visibility = Visibility.Visible;
         }
         //Uloha1
         private void Button_Click_13(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             uloha1.Visibility = Visibility.Visible;
         }
         //Uloha1
@@ -196,6 +195,8 @@ namespace AUDS2
             Uloha1LA.Content = "";
             Uloha1TB.Text = "";
             Hlaska1.Content = "";
+            Uloha1LWP.ItemsSource = new List<string>();
+            Uloha1LWN.ItemsSource = new List<string>();
             if (TBSupCIsloUloha1.Text == "")
             {
                 Hlaska1.Content = "Nezadal si  súpisné čislo ";
@@ -207,13 +208,12 @@ namespace AUDS2
                 return;
             }
 
-            int sup, kat;
-            if (!int.TryParse(TBSupCIsloUloha1.Text, out sup))
+            if (!int.TryParse(TBSupCIsloUloha1.Text, out var sup))
             {
                 Hlaska1.Content = "Zle zadané súpisné čislo ";
                 return;
             }
-            if (!int.TryParse(TBCisloKatUloha1.Text, out kat))
+            if (!int.TryParse(TBCisloKatUloha1.Text, out var kat))
             {
                 Hlaska1.Content = "Zle zadané katasrálne čislo ";
                 return;
@@ -221,22 +221,24 @@ namespace AUDS2
             try
             {
                 var pole = pr.Uloha01(sup,kat);
-                Uloha1LLV.Content = pole[3];
-                Uloha1LSC.Content = pole[0];
-                Uloha1LA.Content = pole[1];
-                Uloha1TB.Text = pole[2];
-
+                Uloha1LLV.Content = pole[0][3];
+                Uloha1LSC.Content = pole[0][0];
+                Uloha1LA.Content = pole[0][1];
+                Uloha1TB.Text = pole[0][2];
+                Uloha1LWN.ItemsSource = pole[1];
+                Uloha1LWP.ItemsSource = pole[2];
 
             }
             catch (Exception )
             {
-                Hlaska1.Content = "Kataster neexzistuje alebosúpisne číslo neexzistuje"; ;
+                Hlaska1.Content = "Kataster neexzistuje alebo súpisne číslo neexzistuje"; 
+
             }
         }
         //Uloha2
         private void Button_Click_26(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             uloha2.Visibility = Visibility.Visible;
         }
         //Uloha2
@@ -275,7 +277,7 @@ namespace AUDS2
         //Uloha03
         private void Button_Click_28(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             uloha3.Visibility = Visibility.Visible;
         }
         //Uloha03
@@ -298,18 +300,18 @@ namespace AUDS2
                 Hlaska3.Content = "Nezadal si supisne cislo ";
                 return;
             }
-            int kat,sup,list;
-            if (!int.TryParse(Uloha3TBK.Text, out kat))
+
+            if (!int.TryParse(Uloha3TBK.Text, out var kat))
             {
                 Hlaska3.Content = "Zle zadané čislo katastra";
                 return;
             }
-            if (!int.TryParse(Uloha3TLV.Text, out list))
+            if (!int.TryParse(Uloha3TLV.Text, out var list))
             {
                 Hlaska3.Content = "Zle zadané čislo listu";
                 return;
             }
-            if (!int.TryParse(Uloha3TSC.Text, out sup))
+            if (!int.TryParse(Uloha3TSC.Text, out var sup))
             {
                 Hlaska3.Content = "Zle zadané supistne čislo ";
                 return;
@@ -330,14 +332,15 @@ namespace AUDS2
         //Uloha4
         private void Button_Click_30(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             uloha4.Visibility = Visibility.Visible;
         }
         //Uloha4
         private void Button_Click_31(object sender, RoutedEventArgs e)
         {
             Hlaska4.Content = "";
-            Uloha4LW.ItemsSource = new List<string>();
+            Uloha4LWN.ItemsSource = new List<string>();
+            Uloha4LWP.ItemsSource = new List<string>();
             if (Uloha4TBK.Text == "")
             {
                 Hlaska4.Content = "Nezadal si číslo katastra";
@@ -348,14 +351,13 @@ namespace AUDS2
                 Hlaska4.Content = "Nezadal si cislo listu vlasnictva ";
                 return;
             }
-           
-            int kat,list;
-            if (!int.TryParse(Uloha4TBK.Text, out kat))
+
+            if (!int.TryParse(Uloha4TBK.Text, out var kat))
             {
                 Hlaska4.Content = "Zle zadané čislo katastra";
                 return;
             }
-            if (!int.TryParse(Uloha4TLV.Text, out list))
+            if (!int.TryParse(Uloha4TLV.Text, out var list))
             {
                 Hlaska4.Content = "Zle zadané čislo listu";
                 return;
@@ -364,7 +366,9 @@ namespace AUDS2
 
             try
             {
-                Uloha4LW.ItemsSource = pr.Uloha4(kat, list);
+                var pole = pr.Uloha4(kat, list);
+                Uloha4LWP.ItemsSource = pole[0];
+                Uloha4LWN.ItemsSource = pole[1];
             }
             catch (Exception)
             {
@@ -375,7 +379,7 @@ namespace AUDS2
         //Uloha5
         private void Button_Click_32(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             uloha5.Visibility = Visibility.Visible;
         }
         //Uloha5
@@ -386,6 +390,8 @@ namespace AUDS2
             Uloha5LA.Content = "";
             Uloha5TB.Text = "";
             Hlaska5.Content = "";
+            Uloha5LWP.ItemsSource = new List<string>();
+            Uloha5LWN.ItemsSource = new List<string>();
             if (TBSupCIsloUloha5.Text == "")
             {
                 Hlaska5.Content = "Nezadal si  súpisné čislo ";
@@ -397,8 +403,7 @@ namespace AUDS2
                 return;
             }
 
-            int sup;
-            if (!int.TryParse(TBSupCIsloUloha5.Text, out sup))
+            if (!int.TryParse(TBSupCIsloUloha5.Text, out int sup))
             {
                 Hlaska5.Content = "Zle zadané súpisné čislo ";
                 return;
@@ -406,10 +411,12 @@ namespace AUDS2
             try
             {
                 var pole = pr.Uloha05(sup, TBCisloKatUloha5.Text);
-                Uloha5LLV.Content = pole[3];
-                Uloha5LSC.Content = pole[0];
-                Uloha5LA.Content = pole[1];
-                Uloha5TB.Text = pole[2];
+                Uloha5LLV.Content = pole[0][3];
+                Uloha5LSC.Content = pole[0][0];
+                Uloha5LA.Content = pole[0][1];
+                Uloha5TB.Text = pole[0][2];
+                Uloha5LWN.ItemsSource = pole[1];
+                Uloha5LWP.ItemsSource = pole[2];
 
 
             }
@@ -421,14 +428,15 @@ namespace AUDS2
         //Uloha6
         private void Button_Click_35(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             uloha6.Visibility = Visibility.Visible;
         }
         //uloha6
         private void Button_Click_34(object sender, RoutedEventArgs e)
         {
             Hlaska6.Content = "";
-            Uloha6LW.ItemsSource = new List<string>();
+            Uloha6LWN.ItemsSource = new List<string>();
+            Uloha6LWP.ItemsSource = new List<string>();
             if (Uloha6TBK.Text == "")
             {
                 Hlaska6.Content = "Nezadal si nazov katastra";
@@ -440,8 +448,7 @@ namespace AUDS2
                 return;
             }
 
-            int list;
-            if (!int.TryParse(Uloha6TLV.Text, out list))
+            if (!int.TryParse(Uloha6TLV.Text, out int list))
             {
                 Hlaska6.Content = "Zle zadané čislo listu";
                 return;
@@ -450,7 +457,9 @@ namespace AUDS2
 
             try
             {
-                Uloha6LW.ItemsSource = pr.Uloha6(Uloha6TBK.Text, list);
+                var pole = pr.Uloha6(Uloha6TBK.Text, list);
+                Uloha6LWP.ItemsSource = pole[0];
+                Uloha6LWN.ItemsSource = pole[1];
             }
             catch (Exception)
             {
@@ -460,7 +469,7 @@ namespace AUDS2
         //uloha7
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             uloha7.Visibility = Visibility.Visible;
 
         }
@@ -495,7 +504,7 @@ namespace AUDS2
         //uloha8
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             uloha8.Visibility = Visibility.Visible;
         }
         //Uloha8
@@ -514,11 +523,10 @@ namespace AUDS2
 
             }
 
-            int kat;
 
-            if (!int.TryParse(Uloha8TBkat.Text, out kat))
+            if (!int.TryParse(Uloha8TBkat.Text, out int kat))
             {
-                Hlaska17.Content = "Zle zadané čislo katastra";
+                Hlaska8.Content = "Zle zadané čislo katastra";
                 return;
             }
 
@@ -534,7 +542,7 @@ namespace AUDS2
         //Uloha9
         private void Button_Click_36(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             uloha9.Visibility = Visibility.Visible;
         }
         //Uloha9
@@ -560,7 +568,7 @@ namespace AUDS2
         //Uloha10
         private void Button_Click_38(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             uloha10.Visibility = Visibility.Visible;
         }
         //Uloha10
@@ -581,8 +589,7 @@ namespace AUDS2
                 Hlaska10.Content = "Nezadal si supistne cislo";
                 return;
             }
-            int cislo;
-            if (!int.TryParse(Uloha10TBSC.Text, out cislo))
+            if (!int.TryParse(Uloha10TBSC.Text, out int cislo))
             {
                 Hlaska10.Content = "Zle zadané supistne čislo";
                 return;
@@ -604,7 +611,7 @@ namespace AUDS2
         //Uloha11
         private void Button_Click_41(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             uloha11.Visibility = Visibility.Visible;
         }
         //Uloha11
@@ -631,13 +638,12 @@ namespace AUDS2
                 return;
             }
 
-            int cislo, kat;
-            if (!int.TryParse(Uloha11TBSC.Text, out cislo))
+            if (!int.TryParse(Uloha11TBSC.Text, out var cislo))
             {
                 Hlaska11.Content = "Zle zadané supistne čislo";
                 return;
             }
-            if (!int.TryParse(Uloha11TBK.Text, out kat))
+            if (!int.TryParse(Uloha11TBK.Text, out var kat))
             {
                 Hlaska11.Content = "Zle zadané  čislo katastru";
                 return;
@@ -655,7 +661,7 @@ namespace AUDS2
         //Uloha13
         private void Button_Click_43(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             Uloha13.Visibility = Visibility.Visible;
         }
         //Uloha13
@@ -672,13 +678,13 @@ namespace AUDS2
                 Hlaska13.Content = "Nezadal si číslo listu";
                 return;
             }
-            int kat, list;
-            if (!int.TryParse(Uloha13TBCK.Text, out kat))
+
+            if (!int.TryParse(Uloha13TBCK.Text, out var kat))
             {
                 Hlaska13.Content = "Zle zadané čislo katastra";
                 return;
             }
-            if (!int.TryParse(Uloha13TBCL.Text, out list))
+            if (!int.TryParse(Uloha13TBCL.Text, out var list))
             {
                 Hlaska13.Content = "Zle zadané čislo listu";
                 return;
@@ -696,15 +702,13 @@ namespace AUDS2
         //Uloha13
         private void Button_Click_44(object sender, RoutedEventArgs e)
         {
-
-            int kat, list;
-            if (!int.TryParse(Uloha13TBCK.Text, out kat))
+            if (!int.TryParse(Uloha13TBCK.Text, out var kat))
             {
                 Hlaska13.Content = "Zle zadané čislo katastra";
                 return;
             }
 
-            if (!int.TryParse(Uloha13TBCL.Text, out list))
+            if (!int.TryParse(Uloha13TBCL.Text, out var list))
             {
                 Hlaska13.Content = "Zle zadané čislo listu";
                 return;
@@ -727,7 +731,7 @@ namespace AUDS2
         //Uloha19
         private void Button_Click_46(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             uloha19.Visibility = Visibility.Visible;
         }
         //uloha19
@@ -738,7 +742,7 @@ namespace AUDS2
         //Uloha15
         private void Button_Click_40(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             Uloha15.Visibility = Visibility.Visible;
             Uloha15LW.ItemsSource = pr.Uloha15();
         }
@@ -750,9 +754,9 @@ namespace AUDS2
 
 
         {
-            schovaj();
+            Schovaj();
             Uloha21.Visibility = Visibility.Visible;
-            Uloha21LW.ItemsSource = pr.getKatUzemia();
+            Uloha21LW.ItemsSource = pr.GetKatUzemia();
 
         }
         //uloha 21
@@ -770,14 +774,13 @@ namespace AUDS2
                 Hlaska21.Content = "Nezadal si názov katastra ";
                 return;
             }
-            int cislo;
-            if (!int.TryParse(TBCisUzUloha21.Text, out cislo))
+            if (!int.TryParse(TBCisUzUloha21.Text, out int cislo))
             {
                 Hlaska21.Content = "Zle zadané čislo katastra";
                 return;
             }
             Hlaska21.Content = pr.Uloha21(TBNazUzUloha21.Text, cislo);
-            Uloha21LW.ItemsSource = pr.getKatUzemia();
+            Uloha21LW.ItemsSource = pr.GetKatUzemia();
         }
 
         private void Button_Click_17(object sender, RoutedEventArgs e)
@@ -785,18 +788,17 @@ namespace AUDS2
             if (Uloha18TBAdresa.Text != "" && Uloha18TBCisloKatastra.Text != "" && Uloha18TBCisloListu.Text != "" &&
                 Uloha18TBPopis.Text != "" && Uloha18TBSupCislo.Text != "")
             {
-                int list, kat, sup;
-                if (!int.TryParse(Uloha18TBCisloListu.Text, out list))
+                if (!int.TryParse(Uloha18TBCisloListu.Text, out var list))
                 {
                     Hlaska18.Content = "Zle zadané čislo listu";
                     return;
                 }
-                if (!int.TryParse(Uloha18TBCisloKatastra.Text, out kat))
+                if (!int.TryParse(Uloha18TBCisloKatastra.Text, out var kat))
                 {
                     Hlaska18.Content = "Zle zadané čislo katastra";
                     return;
                 }
-                if (!int.TryParse(Uloha18TBSupCislo.Text, out sup))
+                if (!int.TryParse(Uloha18TBSupCislo.Text, out var sup))
                 {
                     Hlaska18.Content = "Zle zadané súpistné čislo";
                     return;
@@ -821,7 +823,7 @@ namespace AUDS2
 
         private void Button_Click_18(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             Uloha12.Visibility = Visibility.Visible;
         }
 
@@ -838,13 +840,13 @@ namespace AUDS2
                 Hlaska12.Content = "Nezadal si číslo listu";
                 return;
             }
-            int kat, list;
-            if (!int.TryParse(Uloha12TBCK.Text, out kat))
+
+            if (!int.TryParse(Uloha12TBCK.Text, out var kat))
             {
                 Hlaska12.Content = "Zle zadané čislo katastra";
                 return;
             }
-            if (!int.TryParse(Uloha12TBCL.Text, out list))
+            if (!int.TryParse(Uloha12TBCL.Text, out var list))
             {
                 Hlaska12.Content = "Zle zadané čislo listu";
                 return;
@@ -871,18 +873,18 @@ namespace AUDS2
                 Hlaska12.Content = "Nezadal si Podiel";
                 return;
             }
-            int kat, list,pod;
-            if (!int.TryParse(Uloha12TBCK.Text, out kat))
+
+            if (!int.TryParse(Uloha12TBCK.Text, out var kat))
             {
                 Hlaska12.Content = "Zle zadané čislo katastra";
                 return;
             }
-            if (!int.TryParse(Uloha12TBCL.Text, out list))
+            if (!int.TryParse(Uloha12TBCL.Text, out var list))
             {
                 Hlaska12.Content = "Zle zadané čislo listu";
                 return;
             }
-            if (!int.TryParse(Uloha12TBPR.Text, out pod))
+            if (!int.TryParse(Uloha12TBPR.Text, out var pod))
             {
                 Hlaska12.Content = "Zle zadané čislo listu";
                 return;
@@ -893,8 +895,8 @@ namespace AUDS2
                  pr.Uloha12ZmenPodiel(kat, list, Uloha12TBRC.Text, pod);
                  Uloha12LW.ItemsSource = pr.Uloha12VratPodiely(kat, list);
 
-               // podiely.Add(Uloha12TBRC.Text + "/"+ pod);
-                //Uloha12LWN.ItemsSource = podiely;
+               // Podiely.Add(Uloha12TBRC.Text + "/"+ pod);
+                //Uloha12LWN.ItemsSource = Podiely;
                 
             }
             catch (Exception)
@@ -908,7 +910,7 @@ namespace AUDS2
         private void Button_Click_21(object sender, RoutedEventArgs e)
         {
             int sum = 0;
-            foreach (var str in podiely)
+            foreach (var str in Podiely)
             {
                 var a = str.Split('/');
                 sum += Int32.Parse(a[1]);
@@ -920,14 +922,14 @@ namespace AUDS2
             }
             else
             {
-                podiely.Clear();
-                Uloha12LWN.ItemsSource = podiely;
+                Podiely.Clear();
+                Uloha12LWN.ItemsSource = Podiely;
             }
         }
 
         private void Button_Click_22(object sender, RoutedEventArgs e)
         {
-            schovaj();
+            Schovaj();
             Uloha12p.Visibility = Visibility.Visible;
         }
 
@@ -949,13 +951,13 @@ namespace AUDS2
                 Hlaska12p.Content = "Nezadal si číslo listu";
                 return;
             }
-            int kat, list;
-            if (!int.TryParse(Uloha12pTBCK.Text, out kat))
+
+            if (!int.TryParse(Uloha12pTBCK.Text, out var kat))
             {
                 Hlaska12p.Content = "Zle zadané čislo katastra";
                 return;
             }
-            if (!int.TryParse(Uloha12pTBCL.Text, out list))
+            if (!int.TryParse(Uloha12pTBCL.Text, out var list))
             {
                 Hlaska12p.Content = "Zle zadané čislo listu";
                 return;
@@ -979,20 +981,19 @@ namespace AUDS2
                 return;
             }
 
-            int kat, list, pod;
-            if (!int.TryParse(Uloha12pTBCK.Text, out kat))
+            if (!int.TryParse(Uloha12pTBCK.Text, out var kat))
             {
                 Hlaska12p.Content = "Zle zadané čislo katastra";
                 return;
             }
 
-            if (!int.TryParse(Uloha12pTBCL.Text, out list))
+            if (!int.TryParse(Uloha12pTBCL.Text, out var list))
             {
                 Hlaska12p.Content = "Zle zadané čislo listu";
                 return;
             }
 
-            if (!int.TryParse(Uloha12pTBPR.Text, out pod))
+            if (!int.TryParse(Uloha12pTBPR.Text, out var pod))
             {
                 Hlaska12p.Content = "Zle zadané čislo listu";
                 return;
@@ -1013,7 +1014,7 @@ namespace AUDS2
 
         private void Button_Click_48(object sender, RoutedEventArgs e)
         {
-            pr.generuj();
+            pr.Generuj();
         }
 
         private void Button_Click_49(object sender, RoutedEventArgs e)
@@ -1024,20 +1025,19 @@ namespace AUDS2
                 return;
             }
 
-            int kat, list, pod;
-            if (!int.TryParse(Uloha12pTBCK.Text, out kat))
+            if (!int.TryParse(Uloha12pTBCK.Text, out var kat))
             {
                 Hlaska12p.Content = "Zle zadané čislo katastra";
                 return;
             }
 
-            if (!int.TryParse(Uloha12pTBCL.Text, out list))
+            if (!int.TryParse(Uloha12pTBCL.Text, out var list))
             {
                 Hlaska12p.Content = "Zle zadané čislo listu";
                 return;
             }
 
-            if (!int.TryParse(Uloha12pTBPR.Text, out pod))
+            if (!int.TryParse(Uloha12pTBPR.Text, out var pod))
             {
                 Hlaska12p.Content = "Zle zadané čislo listu";
                 return;
@@ -1057,12 +1057,12 @@ namespace AUDS2
 
         private void Button_Click_50(object sender, RoutedEventArgs e)
         {
-            pr.uloz();
+            pr.Uloz();
         }
 
         private void Button_Click_51(object sender, RoutedEventArgs e)
         {
-            pr.nacitaj();
+            pr.Nacitaj();
         }
     }
 }

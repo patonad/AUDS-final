@@ -14,14 +14,14 @@ namespace AUDS2.KatUzemie
         public int Cislo { get; set; }
         public string Nazov { get; set; }
         public AvlTree<Nehnutelnosti> StromNehnutelnostiPodlaCisla { get; set; }
-        public AvlTree<ListVlasnictva.ListVlasnictva> StromListovVlasnictvaPodlaCisla { get; set; }
+        public AvlTree<ListVlasnictva.ListVlastnictva> StromListovVlastnictvaPodlaCisla { get; set; }
 
         public KatUzemie(int cislo, string nazov)
         {
             Cislo = cislo;
             Nazov = nazov;
             StromNehnutelnostiPodlaCisla = new AvlTree<Nehnutelnosti>();
-            StromListovVlasnictvaPodlaCisla = new AvlTree<ListVlasnictva.ListVlasnictva>();
+            StromListovVlastnictvaPodlaCisla = new AvlTree<ListVlasnictva.ListVlastnictva>();
         }
 
  
