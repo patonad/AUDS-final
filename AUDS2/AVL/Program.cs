@@ -51,56 +51,7 @@ namespace AVL
             StromKatUzemiPodlaCisla.Delete(kat1);
             StromkatUzemiPodlaNazvu.Delete(new KatUzemiePodlaNazvu(kat1.KatUzemie));
         }
-
-        public void oo()
-        {
-            foreach (var katUzemiePodlaCisla in StromKatUzemiPodlaCisla)
-            {
-                foreach (var nehnutelnosti in katUzemiePodlaCisla.KatUzemie.StromListovVlastnictvaPodlaCisla)
-                {
-                    foreach (var nehNaListe in nehnutelnosti.NehnutelnostiNaListe)
-                    {
-                        foreach (var VARIABLE in StromKatUzemiPodlaCisla)
-                        {
-                            foreach (var var1 in VARIABLE.KatUzemie.StromListovVlastnictvaPodlaCisla)
-                            {
-                                foreach (var vehnaliste2 in var1.NehnutelnostiNaListe)
-                                {
-                                    if (katUzemiePodlaCisla.KatUzemie.Cislo != VARIABLE.KatUzemie.Cislo)
-                                    {
-                                        if (nehNaListe.Cislo == vehnaliste2.Cislo)
-                                        {
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-            }
-            foreach (var katUzemiePodlaCisla in StromKatUzemiPodlaCisla)
-            {
-                foreach (var nehnutelnosti in katUzemiePodlaCisla.KatUzemie.StromNehnutelnostiPodlaCisla)
-                {
-                    foreach (var VARIABLE in StromKatUzemiPodlaCisla)
-                    {
-                        foreach (var var1 in VARIABLE.KatUzemie.StromNehnutelnostiPodlaCisla)
-                        {
-                            if (katUzemiePodlaCisla.KatUzemie.Cislo != VARIABLE.KatUzemie.Cislo)
-                            {
-                                if (nehnutelnosti.Cislo == var1.Cislo)
-                                {
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
+        
         public List<KatUzemiePodlaNazvu> GetKatUzemia()
         {
             var list = StromkatUzemiPodlaNazvu.InOrder();
@@ -458,6 +409,7 @@ namespace AVL
             var listVl = kat.KatUzemie.StromListovVlastnictvaPodlaCisla.Find(new ListVlastnictva(null, list));
             kat.KatUzemie.StromNehnutelnostiPodlaCisla.Insert(neh);
             kat.KatUzemie.PridajMaxNeh(neh.Cislo);
+            neh.ListVlasnictva = listVl;
             listVl.NehnutelnostiNaListe.Insert(neh);
             listVl.PridajMax(cislo);
         }
