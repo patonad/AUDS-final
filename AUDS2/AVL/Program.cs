@@ -548,7 +548,7 @@ namespace AVL
                 "Horváth","Kováč","Varga","Tóth","Bednár","Szabó","Molnár","Balog","Lukáč","Slovák","Kučera"
             };
             List<Obcan> obcania = new List<Obcan>();
-            for (int i = 0; i < 10000; i++)  //kolko obcanov
+            for (int i = 0; i < 30000; i++)  //kolko obcanov
             {
                 var ob = new Obcan(mena[ran.Next(0, mena.Length)], priezviska[ran.Next(0, priezviska.Length)],
                     i.ToString(), DateTime.Now.Date);
@@ -556,13 +556,77 @@ namespace AVL
                 obcania.Add(ob);
             }
             List<KatUzemie> katastre = new List<KatUzemie>();
+            List<ListVlastnictva> listyVsetky = new List<ListVlastnictva>();
+            List<Nehnutelnosti> nehnutelnostVsetky = new List<Nehnutelnosti>();
             for (int i = 0; i < 20; i++) //katastre
             {
                 var kat =new KatUzemie(i,"Kataster"+i);
                 StromKatUzemiPodlaCisla.Insert(new KatUzemiePodlaCisla(kat));
                 StromkatUzemiPodlaNazvu.Insert(new KatUzemiePodlaNazvu(kat));
                 katastre.Add(kat);
+                List<ListVlastnictva> listy = new List<ListVlastnictva>();
+                for (int j = 0; j < 1000; j++) // listy vlasnictva
+                {
+                    var list = new ListVlastnictva(kat, j);
+                    kat.StromListovVlastnictvaPodlaCisla.Insert(list);
+                    kat.PridajMaxList(list.CisloListu);
+                    listy.Add(list);
+                    listyVsetky.Add(list);
+                }
+                List<Nehnutelnosti> nehnutelnost = new List<Nehnutelnosti>();
+                for (int j = 0;j < 1500; j++) //nehnutelnosti
+                {
+                    var neh = new Nehnutelnosti(j, "adresa" + j, "popis" + j+" kataster" + i);
+                    nehnutelnost.Add(neh);
+                    nehnutelnostVsetky.Add(neh);
+                }
+                for (int j = 0; j < nehnutelnost.Count; j++) // priradenie na list
+                {
+                    var neh = nehnutelnost[j];
+                    var list = listy[ran.Next(0, listy.Count)];
+                    list.PridajMax(neh.Cislo);
+                    list.NehnutelnostiNaListe.Insert(neh);
+                    neh.ListVlasnictva = list;
+                }
             }
+            for (int i = 0; i < obcania.Count; i++) //trvaly pobyt
+            {
+                var ob = obcania[i];
+                if (ran.Next(0, 10) > -1)
+                {
+
+                    var neh = nehnutelnostVsetky[ran.Next(0, nehnutelnostVsetky.Count)];
+                    ob.TrvalyPobyt = neh;
+                    neh.TrvalýPobyt.Insert(ob);
+                }
+
+                if (ran.Next(0, 10) > -1)
+                {
+                    var list = listyVsetky[ran.Next(0, listyVsetky.Count)];
+                    while (list.NehnutelnostiNaListe.Root == null)
+                    {
+                        list = listyVsetky[ran.Next(0, listyVsetky.Count)];
+                    }// pridanie vlasnika
+                    list.Podiely.Insert(new Vlastnik(ran.Next(0, 10), ob));
+                    ob.ListyVlasnictva.Add(list);
+                }
+            }
+            foreach (var kat in katastre)
+            {
+                foreach (var list in kat.StromListovVlastnictvaPodlaCisla)
+                {
+                    foreach (var VARIABLE in list.NehnutelnostiNaListe)
+                    {
+                        kat.StromNehnutelnostiPodlaCisla.Insert(VARIABLE);
+                        kat.PridajMaxNeh(VARIABLE.Cislo);
+                    }
+                }
+
+            }
+
+
+            /*
+
             List<ListVlastnictva>listy =new List<ListVlastnictva>();
             for (int i = 0; i < 5000; i++) // listy vlasnictva
             {
@@ -578,10 +642,7 @@ namespace AVL
                 var neh = new Nehnutelnosti(i,"adresa"+i,"popis"+i);
                 nehnutelnost.Add(neh);
             }
-
-
-
-
+                   
             for (int i = 0; i < obcania.Count; i++) //trvaly pobyt
             {
                 var ob = obcania[i];
@@ -626,7 +687,7 @@ namespace AVL
                 }
 
             }
-          
+          */
         }
 
         public void Nacitaj()
